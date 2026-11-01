@@ -21,7 +21,7 @@
   <link rel="preload" href="../assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/instrument-serif.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/space-mono-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="downloads.css?v=20261101d">
+  <link rel="stylesheet" href="downloads.css?v=20261101e">
 </head>
 <body>
   <a class="skip-link" href="#downloads-root">跳到文件列表</a>
@@ -75,6 +75,7 @@
           <h2>为什么文件不在本站？</h2>
           <p>主页部署在 GitHub Pages，单文件限制 100 MiB；大文件放在 GitHub Releases，单个附件上限 2 GiB，官方文档不限制 Release 总大小与下载带宽（受合理使用约束）。</p>
           <p>超过 2 GB 的文件会拆成多个分卷，每个分卷都列在文件卡片里；全部分卷下载到同一目录后，解压第 1 个分卷即可。</p>
+          <p><b>加速镜像：</b>所有 github.com 文件会自动追加 <code>gh-proxy.org</code> 镜像，原始 GitHub 链接仍然保留。镜像由第三方提供，可能限速或失效，下载后可用 SHA-256 校验。参见 <a href="https://gh-proxy.com/docs/github-accelerator" target="_blank" rel="noopener">gh-proxy 文档 ↗</a>。</p>
         </div>
         <div>
           <span class="mono">BEFORE DOWNLOAD / 下载前</span>
@@ -97,6 +98,6 @@
   </footer>
 
   <div class="dl-toast" id="dlToast" role="status" aria-live="polite"></div>
-  <script src="downloads.js?v=20261101d" defer></script>
+  <script src="downloads.js?v=20261101e" defer></script>
 </body>
 </html>

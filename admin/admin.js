@@ -568,6 +568,7 @@
                 field("下载直链", `downloads.${di}.files.${fi}.url`, file.url, {
                   full: true,
                   placeholder: "https://github.com/.../releases/download/...",
+                  hint: "GitHub 直链会自动生成 gh-proxy.org 镜像，无需另填。",
                 }) +
                 field("SHA-256（可选）", `downloads.${di}.files.${fi}.sha256`, file.sha256, { full: true })
             )}
@@ -617,6 +618,7 @@
     const guide = `
       <div class="note-box">
         <p><b>文件本身不经过后台。</b>请先在 GitHub Releases 上传附件，再把直链填到这里。后台只保存索引、大小与校验值。</p>
+        <p><b>加速镜像：</b>下载页会自动为所有 github.com 文件追加 <code>gh-proxy.org</code> 镜像，当前和以后新增的文件都无需另填；原始 GitHub 链接仍保留。</p>
         <ol>
           <li>打开 <a href="https://github.com/Lihongbo-Learn/lihongbo-learn.github.io/releases/new" target="_blank" rel="noopener">Releases → Draft a new release</a>。</li>
           <li>Tag 例如 <code>v1.4.0</code>；单个附件必须小于 2 GiB（2,147,483,648 字节）。</li>

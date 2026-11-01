@@ -116,6 +116,8 @@ Token 只保存在你浏览器的 localStorage / sessionStorage，不会提交�
 
 也可以用 `gh release create v1.4.0 ./dist/*.7z --title "..." --notes "..."`，后续 `gh release upload v1.4.0 文件 --clobber`。后台只保存索引，不传输大文件。
 
+下载页会自动为所有 `github.com` 文件追加 `https://gh-proxy.org/<原 GitHub URL>` 加速镜像；当前和以后新增的文件都不需要另填镜像字段。原始 GitHub 链接仍然保留。镜像由第三方提供，失效时请使用原链，并用 SHA-256 校验文件。
+
 ### 公开与限制
 
 - Release 附件公开，任何拿到直链的人都能下载；需要密码时上传加密压缩包并线下发送密码。

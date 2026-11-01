@@ -21,6 +21,11 @@
     return /^https?:\/\//i.test(raw) ? raw : "";
   };
 
+  // gh-proxy docs: prefix https://gh-proxy.org/ to a GitHub URL
+  const PROXY_ORIGIN = "https://gh-proxy.org/";
+  const isGithubUrl = (url) => /^https:\/\/(github\.com|raw\.githubusercontent\.com|codeload\.github\.com)\//i.test(url);
+  const mirrorUrl = (url) => (isGithubUrl(url) ? `${PROXY_ORIGIN}${url}` : "");
+
   const state = {
     entries: [],
     platform: "全部",
@@ -89,6 +94,7 @@
     const label = plainText(file.label) || "文件";
     const size = plainText(file.size);
     const sha = plainText(file.sha256).replace(/^sha256:/i, "");
+    const proxy = mirrorUrl(file.url);
     return `
       <div class="dl-file">
         <div>
@@ -97,6 +103,7 @@
         </div>
         <div class="dl-file-actions">
           <a class="dl-mini" href="${esc(file.url)}" target="_blank" rel="noopener">下载 ↗</a>
+          ${proxy ? `<a class="dl-mini dl-mini--proxy" href="${esc(proxy)}" target="_blank" rel="noopener" title="gh-proxy.org 第三方加速">镜像</a>` : ""}
           ${sha ? `<button class="dl-copy" type="button" data-copy="${esc(sha)}" aria-label="复制 ${esc(label)} 的 SHA-256">SHA-256</button>` : ""}
         </div>
       </div>`;
@@ -140,6 +147,7 @@
           primary
             ? `<div class="dl-actions">
                 <a class="dl-btn" href="${esc(primary.url)}" target="_blank" rel="noopener">下载 ${esc(primary.label || "")} <span aria-hidden="true">↓</span></a>
+                ${mirrorUrl(primary.url) ? `<a class="dl-btn dl-btn--ghost dl-btn--proxy" href="${esc(mirrorUrl(primary.url))}" target="_blank" rel="noopener" title="gh-proxy.org 第三方加速">镜像下载 ↗</a>` : ""}
                 ${releaseUrl ? `<a class="dl-btn dl-btn--ghost" href="${esc(releaseUrl)}" target="_blank" rel="noopener">Release ↗</a>` : ""}
               </div>
               ${primary.sha256 ? shaRow(primary) : ""}`

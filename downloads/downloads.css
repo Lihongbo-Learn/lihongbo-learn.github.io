@@ -570,6 +570,15 @@ ul {
   color: var(--accent-2);
   box-shadow: none;
 }
+.dl-btn--proxy {
+  border-color: var(--accent-line);
+  color: var(--accent-2);
+}
+.dl-btn--proxy:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent-2);
+}
 .dl-sha {
   display: flex;
   align-items: center;
@@ -651,6 +660,7 @@ ul {
   display: flex;
   align-items: center;
   gap: 6px;
+  flex-wrap: wrap;
 }
 .dl-mini {
   padding: 6px 10px;
@@ -667,6 +677,10 @@ ul {
   color: var(--accent-2);
   border-color: var(--accent-line);
   background: var(--accent-soft);
+}
+.dl-mini--proxy {
+  border-color: var(--accent-line);
+  color: var(--accent-2);
 }
 .dl-hint {
   margin-top: 10px;
@@ -746,6 +760,13 @@ ul {
   font-size: 12px;
   line-height: 1.95;
   color: var(--text-3);
+}
+.dl-guide a {
+  color: var(--accent-2);
+  border-bottom: 1px solid var(--accent-line);
+}
+.dl-guide a:hover {
+  color: var(--text);
 }
 .dl-guide p + p {
   margin-top: 10px;
