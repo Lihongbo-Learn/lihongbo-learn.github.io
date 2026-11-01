@@ -173,16 +173,7 @@
       "hex": "#E8440F"
     }
   ],
-  "talks": [
-    {
-      "title": "SchoolLink：在没有互联网的教室里做设计",
-      "event": "项目复盘 · 校内分享",
-      "date": "2026",
-      "video": "",
-      "poster": "",
-      "note": "从一枚图标讲到一条离线链路，复盘校联从草图到上线的全过程。录像整理中，稍后上传。"
-    }
-  ],
+  "talks": [],
   "contact": {
     "email": "2159979028@qq.com",
     "github": "https://github.com/Lihongbo-Learn",
