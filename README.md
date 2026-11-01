@@ -1,10 +1,9 @@
 # 宛枯缘梦 — 个人主页
 
-一个深色、星空背景的个人主页：玻璃卡片版面、逐字打出的首屏、可切换的项目跨页、可拖拽的字体样张、胶片式色板，以及一个不需要写代码的可视化后台。
+一个深色、星空背景的个人主页：玻璃卡片版面、逐字打出的首屏、可切换的项目跨页、讲座与联系，以及一个不需要写代码的可视化后台。
 
 - 线上地址：<https://lihongbo-learn.github.io/>
 - 后台：<https://lihongbo-learn.github.io/admin/>
-- 字体样张 PDF：`assets/wankuyuanmeng-specimen.pdf`
 
 ## 技术
 
@@ -30,7 +29,7 @@ python -m http.server 8080
 
 ```
 index.html                 首页骨架
-specimen.html              印刷版字体样张（用于打印成 PDF）
+specimen.html              独立字体样张（保留文件，首页不展示）
 404.html                   404 页
 content/site.json          站点全部内容（后台写这个文件）
 admin/                     可视化后台
@@ -40,7 +39,7 @@ assets/fonts/*.woff2       自托管字体
 assets/img/avatar.png      头像
 assets/img/schoollink-icon.png  项目标识（非截图）
 assets/img/og.png          分享卡片
-assets/wankuyuanmeng-specimen.pdf  可下载样张
+assets/wankuyuanmeng-specimen.pdf  独立样张 PDF（首页不展示）
 uploads/                   后台上传的图片
 ```
 
@@ -50,9 +49,9 @@ uploads/                   后台上传的图片
    - Repository access：只选 `Lihongbo-Learn/lihongbo-learn.github.io`
    - Permissions → Contents：**Read and write**
 2. 打开 `/admin/`，粘贴 Token，连接仓库。
-3. 左侧可编辑：站点、首屏、项目与跨页、字体样张、色板、讲座、联系。
+3. 左侧可编辑：站点、首屏、项目与跨页、讲座、联系、账户。
 4. 右上角「保存并发布」会把 `content/site.json` 提交到 `main`。GitHub Pages 通常 1–2 分钟重建完成（CDN 可能再缓存约 10 分钟）。
-5. 图片 / PDF 可以在对应字段直接上传，会写入 `uploads/`。
+5. 图片可以在对应字段直接上传，会写入 `uploads/`。
 
 Token 只保存在你浏览器的 localStorage / sessionStorage，不会提交到仓库。请使用只授权本仓库的 Token，并定期更换。
 
@@ -61,7 +60,6 @@ Token 只保存在你浏览器的 localStorage / sessionStorage，不会提交�
 - **不要使用界面截图**。项目视觉请用矢量版面、品牌资产、图标或作品实拍。后台在图片字段旁也做了提示。
 - 首页项目卡使用 `projects[].image`；项目跨页使用 `projects[].spreads[]`（`visual` 可选 `diagram` / `signal` / `mark`，留空时使用图片）。
 - 首屏大字是 `hero.name`，拼音行是 `hero.nameLatin`，打字机短句是 `hero.typing`。
-- 关于标题支持换行（后台直接回车）。
 
 ## 部署
 

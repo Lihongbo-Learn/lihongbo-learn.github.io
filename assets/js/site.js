@@ -201,7 +201,7 @@
         </div>
         <div class="hero-foot mono">
           <span>ISSUE ${esc(c.meta && c.meta.issue)} / ${esc(c.meta && c.meta.year)}</span>
-          <a class="scroll-cue" href="#about"><i aria-hidden="true"></i> SCROLL</a>
+          <a class="scroll-cue" href="#works"><i aria-hidden="true"></i> SCROLL</a>
           <span>${esc(h.location)}</span>
         </div>
       </section>`;
@@ -215,7 +215,7 @@
     const email = plainText(contact.email);
     const github = safeUrl(contact.github);
     const projects = (Array.isArray(c.projects) ? c.projects : []).map((p) => p.title).join(" / ");
-    const now = projects ? `正在做 ${projects}，以及一套字体样张。` : "正在做一套字体样张。";
+    const now = projects ? `正在做 ${projects}。` : "正在整理作品。";
 
     $("#profile-root").innerHTML = `
       <div class="card profile-card reveal">
@@ -246,7 +246,6 @@
   function renderStats(c) {
     const projects = Array.isArray(c.projects) ? c.projects : [];
     const spreads = state.flatSpreads.length;
-    const palette = Array.isArray(c.palette) ? c.palette.length : 0;
     const talks = Array.isArray(c.talks) ? c.talks.length : 0;
     const now = new Date();
     const updated = `${c.meta && c.meta.year ? c.meta.year : now.getFullYear()}.${pad(now.getMonth() + 1)}`;
@@ -257,8 +256,6 @@
         <div class="stats-list">
           <div><span>项目</span><b>${pad(projects.length)}</b></div>
           <div><span>跨页</span><b>${pad(spreads)}</b></div>
-          <div><span>字样</span><b>04 P</b></div>
-          <div><span>色板</span><b>${pad(palette)}</b></div>
           <div><span>讲座</span><b>${pad(talks)}</b></div>
           <div><span>更新</span><b>${esc(updated)}</b></div>
         </div>
@@ -266,12 +263,9 @@
       <div class="card side-card index-card reveal" style="--d:80ms">
         <span class="card-kicker mono">INDEX / 索引</span>
         <div class="index-list">
-          <a href="#about"><span>01</span>关于<em>About</em></a>
-          <a href="#works"><span>02</span>项目<em>Works</em></a>
-          <a href="#specimen"><span>03</span>字样<em>Specimen</em></a>
-          <a href="#palette"><span>04</span>色板<em>Palette</em></a>
-          <a href="#talks"><span>05</span>讲座<em>Talks</em></a>
-          <a href="#contact"><span>06</span>联系<em>Contact</em></a>
+          <a href="#works"><span>01</span>项目<em>Works</em></a>
+          <a href="#talks"><span>02</span>讲座<em>Talks</em></a>
+          <a href="#contact"><span>03</span>联系<em>Contact</em></a>
         </div>
       </div>
       <div class="card side-card side-note reveal" style="--d:160ms">
@@ -320,7 +314,7 @@
     if (!projects.length) {
       $("#works-root").innerHTML = `
         <section class="card reveal" id="works">
-          <header class="card-head"><span class="card-kicker mono">02 / SELECTED WORK</span><span class="mono">项目</span></header>
+          <header class="card-head"><span class="card-kicker mono">01 / SELECTED WORK</span><span class="mono">项目</span></header>
           <h2 class="card-title">作品整理中。</h2>
         </section>`;
       return;
@@ -374,7 +368,7 @@
     $("#works-root").innerHTML = `
       <section class="card reveal" id="works">
         <header class="card-head">
-          <span class="card-kicker mono">02 / SELECTED WORK</span>
+          <span class="card-kicker mono">01 / SELECTED WORK</span>
           <span class="mono">项目</span>
         </header>
         ${blocks}
@@ -734,7 +728,7 @@
     $("#talks-root").innerHTML = `
       <section class="card reveal" id="talks">
         <header class="card-head">
-          <span class="card-kicker mono">05 / TALKS</span>
+          <span class="card-kicker mono">02 / TALKS</span>
           <span class="mono">讲座</span>
         </header>
         ${html || `<p class="card-title" style="font-size:1.4rem">分享记录整理中。</p>`}
@@ -784,7 +778,7 @@
     $("#contact-root").innerHTML = `
       <section class="card contact-card reveal" id="contact">
         <header class="card-head">
-          <span class="card-kicker mono">06 / CONTACT</span>
+          <span class="card-kicker mono">03 / CONTACT</span>
           <span class="mono">联系</span>
         </header>
         <span class="hero-greeting mono" style="display:flex;width:max-content;margin-bottom:18px">${esc(contact.availability)}</span>
@@ -1250,7 +1244,7 @@
     const navLinks = $$("#mastNav a");
     const dockLinks = $$(".dock a[data-dock]");
     const bar = $("#scrollProgress");
-    const sections = ["top", "about", "works", "specimen", "contact"]
+    const sections = ["top", "works", "talks", "contact"]
       .map((id) => document.getElementById(id))
       .filter(Boolean);
 
@@ -1344,10 +1338,7 @@
 
       renderHero(content);
       renderProfile(content);
-      renderAbout(content);
       renderWorks(content);
-      renderSpecimen(content);
-      renderPalette(content);
       renderTalks(content);
       renderContact(content);
       renderStats(content);

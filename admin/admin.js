@@ -261,7 +261,7 @@
   function panelSite() {
     const c = state.content;
     return (
-      tabHead("01", "站点", "站点标题、期号与自述。修改后按右上角「保存并发布」。") +
+      tabHead("01", "站点", "站点标题、期号与描述。修改后按右上角「保存并发布」。") +
       group(
         "站点信息",
         grid(
@@ -269,18 +269,6 @@
             textarea("站点描述", "meta.description", c.meta && c.meta.description, { rows: 3 }) +
             field("期号 Issue", "meta.issue", c.meta && c.meta.issue, { placeholder: "01" }) +
             field("年份", "meta.year", c.meta && c.meta.year, { placeholder: "2026" })
-        )
-      ) +
-      group(
-        "自述 / NOTE",
-        grid(
-          field("小标题", "about.kicker", c.about && c.about.kicker) +
-            textarea("正文", "about.text", c.about && c.about.text, { rows: 4 }) +
-            textarea("补充", "about.note", c.about && c.about.note, { rows: 3 }) +
-            linesField("关注方向", "about.focus", c.about && c.about.focus, {
-              rows: 4,
-              hint: "一行一条，显示为标签。",
-            })
         )
       )
     );
@@ -597,7 +585,7 @@
       .join("");
 
     return (
-      tabHead("06", "讲座", "内嵌视频：支持 MP4、YouTube 与 Bilibili 链接；没有视频时自动显示占位版式。") +
+      tabHead("04", "讲座", "内嵌视频：支持 MP4、YouTube 与 Bilibili 链接；没有视频时自动显示占位版式。") +
       (cards || `<p class="empty-note">还没有讲座记录。</p>`) +
       `<button class="add-btn" type="button" data-action="add-talk">+ 添加讲座</button>`
     );
@@ -606,7 +594,7 @@
   function panelContact() {
     const c = state.content.contact || {};
     return (
-      tabHead("07", "联系", "邮箱、GitHub 与页脚版权说明。邮箱会同时出现在目录与页脚。") +
+      tabHead("05", "联系", "邮箱、GitHub 与页脚版权说明。邮箱会同时出现在资料卡与页脚。") +
       group(
         "联系方式",
         grid(
@@ -631,7 +619,7 @@
 
   function panelAccount() {
     return (
-      tabHead("08", "账户与仓库", "Token 只保存在本机浏览器；它等同于这个仓库的写权限，请不要分享。") +
+      tabHead("06", "账户与仓库", "Token 只保存在本机浏览器；它等同于这个仓库的写权限，请不要分享。") +
       group(
         "仓库",
         `<dl class="kv">
@@ -688,8 +676,6 @@
     site: panelSite,
     hero: panelHero,
     projects: panelProjects,
-    specimen: panelSpecimen,
-    palette: panelPalette,
     talks: panelTalks,
     contact: panelContact,
     account: panelAccount,
@@ -1005,7 +991,6 @@
 
     const projects = arr(content.projects);
     content.projects = projects;
-    content.palette = arr(content.palette);
     content.talks = arr(content.talks);
 
     switch (action) {
@@ -1045,12 +1030,6 @@
         break;
       case "move-spread":
         if (projects[pi]) moveItem(arr(projects[pi].spreads), i, dir);
-        break;
-      case "add-palette":
-        content.palette.push({ name: "Periwinkle", cn: "星蓝", hex: "#8B9CFF" });
-        break;
-      case "remove-palette":
-        content.palette.splice(i, 1);
         break;
       case "add-talk":
         content.talks.push(newTalk());

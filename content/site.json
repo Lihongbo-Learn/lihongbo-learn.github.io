@@ -3,7 +3,7 @@
     "issue": "01",
     "year": "2026",
     "title": "宛枯缘梦 — 个人主页",
-    "description": "宛枯缘梦的个人主页：设计、字体与代码。收录 SchoolLink 校联、字体样张与若干实验。"
+    "description": "宛枯缘梦的个人主页：设计与前端作品。收录 SchoolLink 校联与分享记录。"
   },
   "hero": {
     "greeting": "你好，我是",
@@ -14,12 +14,13 @@
     "roles": [
       "设计与前端",
       "独立开发",
-      "开源",
-      "实验"
+      "开源作者",
+      "字体实验"
     ],
     "typingPrefix": "正在",
     "typing": [
       "让通知抵达每一块大屏",
+      "把字体排成一本册子",
       "把想法写成可用的代码",
       "做一个离线也能用的系统"
     ],
@@ -33,21 +34,10 @@
         "kind": "primary"
       },
       {
-        "label": "关于我",
-        "href": "#about",
+        "label": "联系我",
+        "href": "#contact",
         "kind": "ghost"
       }
-    ]
-  },
-  "about": {
-    "kicker": "ABOUT / 关于",
-    "text": "我做界面、标识与前端实现。相信好的系统应当像一本装订得当的书：结构清楚，细节克制，拿在手里有分量。",
-    "note": "目前专注校园场景内的离线工具，以及在浏览器里发生的字体与动效实验。",
-    "focus": [
-      "界面设计",
-      "前端实现",
-      "字体与版式",
-      "离线工具"
     ]
   },
   "projects": [
@@ -129,51 +119,16 @@
       ]
     }
   ],
-  "specimen": {
-    "subtitle": "Archivo Variable × 系统宋体",
-    "body": "样张以十二栏网格排布，展开 Archivo 的字宽与字重轴。中文部分使用系统宋体，与无衬线拉丁文形成印刷式的对照。",
-    "lines": [
-      "Aa",
-      "宛枯缘梦",
-      "WANKUYUANMENG",
-      "2026"
-    ],
-    "pdf": "assets/wankuyuanmeng-specimen.pdf",
-    "note": "A4 / 4 页 / 可打印 / 字体已嵌入"
-  },
-  "palette": [
+  "talks": [
     {
-      "name": "Void",
-      "cn": "深夜",
-      "hex": "#060608"
-    },
-    {
-      "name": "Mist",
-      "cn": "雾白",
-      "hex": "#F4F2EC"
-    },
-    {
-      "name": "Periwinkle",
-      "cn": "星蓝",
-      "hex": "#8B9CFF"
-    },
-    {
-      "name": "Moss",
-      "cn": "苔绿",
-      "hex": "#0E3B2E"
-    },
-    {
-      "name": "Amber",
-      "cn": "琥珀",
-      "hex": "#E9A13B"
-    },
-    {
-      "name": "Signal",
-      "cn": "信号红",
-      "hex": "#E8440F"
+      "title": "SchoolLink：在没有互联网的教室里做设计",
+      "event": "项目复盘 · 校内分享",
+      "date": "2026",
+      "video": "",
+      "poster": "",
+      "note": "从一枚图标讲到一条离线链路，复盘校联从草图到上线的全过程。录像整理中，稍后上传。"
     }
   ],
-  "talks": [],
   "contact": {
     "email": "2159979028@qq.com",
     "github": "https://github.com/Lihongbo-Learn",
