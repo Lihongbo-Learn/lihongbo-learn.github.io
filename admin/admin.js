@@ -275,7 +275,7 @@
         "自述 / NOTE",
         grid(
           field("小标题", "about.kicker", c.about && c.about.kicker) +
-            field("标题", "about.title", c.about && c.about.title) +
+            textarea("标题", "about.title", c.about && c.about.title, { rows: 2, full: false, hint: "可用回车控制断行。" }) +
             textarea("正文", "about.text", c.about && c.about.text, { rows: 4 }) +
             textarea("补充", "about.note", c.about && c.about.note, { rows: 3 }) +
             linesField("关注方向", "about.focus", c.about && c.about.focus, {
