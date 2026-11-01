@@ -1,6 +1,6 @@
 # 宛枯缘梦 — 个人主页
 
-一个深色、星空背景的个人主页：玻璃卡片版面、逐字打出的首屏、可切换的项目跨页与联系方式，以及一个不需要写代码的可视化后台。
+一个深色、星空背景的个人主页：玻璃卡片版面、逐字打出的首屏、项目展示与联系方式，以及一个不需要写代码的可视化后台。
 
 - 线上地址：<https://lihongbo-learn.github.io/>
 - 后台：<https://lihongbo-learn.github.io/admin/>
@@ -49,7 +49,7 @@ uploads/                   后台上传的图片
    - Repository access：只选 `Lihongbo-Learn/lihongbo-learn.github.io`
    - Permissions → Contents：**Read and write**
 2. 打开 `/admin/`，粘贴 Token，连接仓库。
-3. 左侧可编辑：站点、首屏、项目与跨页、联系、账户。
+3. 左侧可编辑：站点、首屏、项目、联系、账户。
 4. 右上角「保存并发布」会把 `content/site.json` 提交到 `main`。GitHub Pages 通常 1–2 分钟重建完成（CDN 可能再缓存约 10 分钟）。
 5. 图片可以在对应字段直接上传，会写入 `uploads/`。
 
@@ -58,7 +58,7 @@ Token 只保存在你浏览器的 localStorage / sessionStorage，不会提交�
 ## 内容约定
 
 - **不要使用界面截图**。项目视觉请用矢量版面、品牌资产、图标或作品实拍。后台在图片字段旁也做了提示。
-- 首页项目卡使用 `projects[].image`；项目跨页使用 `projects[].spreads[]`（`visual` 可选 `diagram` / `signal` / `mark`，留空时使用图片）。
+- 首页项目卡使用 `projects[].image`、`projects[].summary`、`projects[].links`（官网 / GitHub）与 `projects[].credits`。
 - 首屏大字是 `hero.name`，拼音行是 `hero.nameLatin`，打字机短句是 `hero.typing`。
 
 ## 部署

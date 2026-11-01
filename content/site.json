@@ -51,11 +51,11 @@
       "summary": "面向校园局域网的通知与文件分发系统。让通知抵达每一块教室大屏，即使没有互联网。",
       "links": [
         {
-          "label": "项目主页",
+          "label": "官网",
           "url": "https://lihongbo-learn.github.io/SchoolLink/"
         },
         {
-          "label": "源码",
+          "label": "GitHub",
           "url": "https://github.com/Lihongbo-Learn/SchoolLink"
         }
       ],
@@ -71,50 +71,6 @@
         {
           "label": "许可",
           "value": "MIT"
-        }
-      ],
-      "spreads": [
-        {
-          "kicker": "01 — 标识 / IDENTITY",
-          "title": "一枚印章，一束信号",
-          "body": [
-            "校联的标识从教室里的“校”字出发：圆角方形像一块屏幕，琥珀色圆点是一则尚未读到的通知。",
-            "标识只保留两种颜色——深绿与琥珀。它需要在大屏、手机与打印物上同时成立，因此所有细节都按“缩小到 16px 仍可辨认”的标准绘制。"
-          ],
-          "aside": "“缩小到 16px，仍然成立。”",
-          "image": "assets/img/schoollink-icon.png",
-          "imageAlt": "校联应用图标，深绿色圆角方形内一个白色的“校”字，右上角一枚琥珀色圆点",
-          "caption": "图 01 — 标识 / 2026",
-          "plate": "green",
-          "visual": "mark"
-        },
-        {
-          "kicker": "02 — 系统 / SYSTEM",
-          "title": "一条链路，三种终端",
-          "body": [
-            "教师端发送，Hub 分发，教室大屏接收。原生端优先走局域网直连，不可用时自动回退到 Hub，断网后补齐。",
-            "界面沿用同一套语法：深绿是背景，纸白是信息，琥珀只留给“需要被看见”的动作。"
-          ],
-          "aside": "“深绿是背景，纸白是信息，琥珀只留给动作。”",
-          "image": "",
-          "imageAlt": "",
-          "caption": "图 02 — 局域网链路 / 示意",
-          "plate": "paper",
-          "visual": "diagram"
-        },
-        {
-          "kicker": "03 — 界面 / INTERFACE",
-          "title": "没有 Wi-Fi，也要抵达",
-          "body": [
-            "整套产品可完全离线部署。首页的功能卡片、安装页与教室模式，共用一套 8pt 网格与两档字重。",
-            "在移动端，信息被压进单列；在教室大屏上，一条通知占据整个画面——这是产品里唯一的“全屏”。"
-          ],
-          "aside": "“全屏只留给真正重要的通知。”",
-          "image": "",
-          "imageAlt": "",
-          "caption": "图 03 — 离线通知 / 版式",
-          "plate": "ink",
-          "visual": "signal"
         }
       ]
     }

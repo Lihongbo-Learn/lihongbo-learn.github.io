@@ -341,21 +341,6 @@
       summary: "",
       links: [],
       credits: [],
-      spreads: [newSpread(1)],
-    };
-  }
-
-  function newSpread(index) {
-    return {
-      kicker: `${pad(index)} — 新跨页 / SPREAD`,
-      title: "新跨页",
-      body: ["在这里写编辑式的项目文案。"],
-      aside: "",
-      image: "",
-      imageAlt: "",
-      caption: "",
-      plate: "paper",
-      visual: "",
     };
   }
 
@@ -365,13 +350,12 @@
       .map((project, pi) => {
         const links = arr(project.links);
         const credits = arr(project.credits);
-        const spreads = arr(project.spreads);
 
         const linkRows = links
           .map(
             (link, i) => `
             <div class="row-item">
-              <input class="adm-input" data-bind="projects.${pi}.links.${i}.label" value="${esc(link.label)}" placeholder="标签，如 项目主页">
+              <input class="adm-input" data-bind="projects.${pi}.links.${i}.label" value="${esc(link.label)}" placeholder="标签，如 官网 / GitHub">
               <input class="adm-input" data-bind="projects.${pi}.links.${i}.url" value="${esc(link.url)}" placeholder="https://">
               <button class="adm-btn adm-btn--sm adm-btn--danger" type="button" data-action="remove-link" data-pi="${pi}" data-i="${i}">删除</button>
             </div>`
@@ -387,50 +371,6 @@
               <button class="adm-btn adm-btn--sm adm-btn--danger" type="button" data-action="remove-credit" data-pi="${pi}" data-i="${i}">删除</button>
             </div>`
           )
-          .join("");
-
-        const spreadCards = spreads
-          .map((spread, si) => {
-            const body = arr(spread.body);
-            return `
-              <div class="subcard">
-                <div class="subcard-head">
-                  <span class="mono">SPREAD ${pad(si + 1)} / ${pad(spreads.length)}</span>
-                  <div class="card-actions">
-                    <button class="adm-btn adm-btn--sm" type="button" data-action="move-spread" data-pi="${pi}" data-i="${si}" data-dir="-1">上移</button>
-                    <button class="adm-btn adm-btn--sm" type="button" data-action="move-spread" data-pi="${pi}" data-i="${si}" data-dir="1">下移</button>
-                    <button class="adm-btn adm-btn--sm adm-btn--danger" type="button" data-action="remove-spread" data-pi="${pi}" data-i="${si}">删除</button>
-                  </div>
-                </div>
-                ${grid(
-                  field("跨页眉标", `projects.${pi}.spreads.${si}.kicker`, spread.kicker, { placeholder: "01 — 标识 / IDENTITY" }) +
-                    field("标题", `projects.${pi}.spreads.${si}.title`, spread.title) +
-                    linesField("正文（一行一段）", `projects.${pi}.spreads.${si}.body`, body, { rows: 5 }) +
-                    textarea("引文 / ASIDE（可选）", `projects.${pi}.spreads.${si}.aside`, spread.aside, {
-                      rows: 2,
-                      full: false,
-                      placeholder: "“缩小到 16px，仍然成立。”",
-                    }) +
-                    selectField("版面色", `projects.${pi}.spreads.${si}.plate`, spread.plate || "paper", [
-                      { value: "green", label: "Green — 深绿满版" },
-                      { value: "paper", label: "Paper — 纸白 + 图形" },
-                      { value: "ink", label: "Ink — 墨黑满版" },
-                    ]) +
-                    selectField("矢量版面", `projects.${pi}.spreads.${si}.visual`, spread.visual || "", [
-                      { value: "", label: "无（使用下方图片）" },
-                      { value: "diagram", label: "系统链路图 / DIAGRAM" },
-                      { value: "signal", label: "离线信号海报 / SIGNAL" },
-                      { value: "mark", label: "标识版面 / MARK（需图片）" },
-                    ]) +
-                    field("图片说明 Alt", `projects.${pi}.spreads.${si}.imageAlt`, spread.imageAlt) +
-                    field("图注 Caption", `projects.${pi}.spreads.${si}.caption`, spread.caption) +
-                    fileField("跨页图片（可选）", `projects.${pi}.spreads.${si}.image`, spread.image, {
-                      accept: "image/*",
-                      hint: "不使用界面截图。请用作品实拍、矢量导出的图形或品牌资产；图表版面可直接选上方「矢量版面」。",
-                    })
-                )}
-              </div>`;
-          })
           .join("");
 
         return `
@@ -469,19 +409,12 @@
               </div>
               <div class="row-list">${creditRows || `<p class="empty-note">还没有署名。</p>`}</div>
             </div>
-            <div class="subcard">
-              <div class="subcard-head">
-                <span class="mono">SPREADS / 跨页（${spreads.length}）</span>
-                <button class="adm-btn adm-btn--sm" type="button" data-action="add-spread" data-pi="${pi}">+ 添加跨页</button>
-              </div>
-              ${spreadCards || `<p class="empty-note">还没有跨页。</p>`}
-            </div>
           </article>`;
       })
       .join("");
 
     return (
-      tabHead("03", "项目与跨页", "每个项目由多个「跨页」组成，滚动时交叉淡入并轻微水平滑动。作品图请勿使用界面截图；优先用矢量版面、品牌资产或实拍。") +
+      tabHead("03", "项目", "项目名称、摘要、封面、官网 / GitHub 链接与署名。作品图请勿使用界面截图；优先用品牌资产或实拍。") +
       (cards || `<p class="empty-note">还没有项目。</p>`) +
       `<button class="add-btn" type="button" data-action="add-project">+ 添加一个项目</button>`
     );
@@ -996,7 +929,7 @@
         projects.push(newProject());
         break;
       case "remove-project":
-        if (window.confirm("删除这个项目及其所有跨页？")) projects.splice(pi, 1);
+        if (window.confirm("删除这个项目？")) projects.splice(pi, 1);
         else return;
         break;
       case "move-project":
@@ -1015,19 +948,6 @@
         break;
       case "remove-credit":
         if (projects[pi] && Array.isArray(projects[pi].credits)) projects[pi].credits.splice(i, 1);
-        break;
-      case "add-spread":
-        projects[pi].spreads = arr(projects[pi].spreads);
-        projects[pi].spreads.push(newSpread(projects[pi].spreads.length + 1));
-        break;
-      case "remove-spread":
-        if (projects[pi] && Array.isArray(projects[pi].spreads)) {
-          if (!window.confirm("删除这个跨页？")) return;
-          projects[pi].spreads.splice(i, 1);
-        }
-        break;
-      case "move-spread":
-        if (projects[pi]) moveItem(arr(projects[pi].spreads), i, dir);
         break;
       case "clear-token": {
         if (!window.confirm("清除本机保存的 Token 并退出后台？")) return;

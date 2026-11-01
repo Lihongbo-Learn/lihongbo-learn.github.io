@@ -245,7 +245,7 @@
 
   function renderStats(c) {
     const projects = Array.isArray(c.projects) ? c.projects : [];
-    const spreads = state.flatSpreads.length;
+    const links = projects.reduce((sum, project) => sum + (Array.isArray(project.links) ? project.links.length : 0), 0);
     const now = new Date();
     const updated = `${c.meta && c.meta.year ? c.meta.year : now.getFullYear()}.${pad(now.getMonth() + 1)}`;
 
@@ -254,7 +254,7 @@
         <span class="card-kicker mono">STATS / 统计</span>
         <div class="stats-list">
           <div><span>项目</span><b>${pad(projects.length)}</b></div>
-          <div><span>跨页</span><b>${pad(spreads)}</b></div>
+          <div><span>链接</span><b>${pad(links)}</b></div>
           <div><span>更新</span><b>${esc(updated)}</b></div>
         </div>
       </div>
@@ -300,13 +300,6 @@
   /* ---------- render: works ---------- */
   function renderWorks(c) {
     const projects = (Array.isArray(c.projects) ? c.projects : []).filter((p) => p && p.title);
-    state.flatSpreads = [];
-    projects.forEach((project, pi) => {
-      const list = Array.isArray(project.spreads) ? project.spreads : [];
-      list.forEach((spread, si) => {
-        state.flatSpreads.push({ project, spread, pi, si, globalIndex: state.flatSpreads.length });
-      });
-    });
 
     if (!projects.length) {
       $("#works-root").innerHTML = `
@@ -321,16 +314,17 @@
       .map((project, pi) => {
         const icon = safeUrl(project.image);
         const tags = [project.category, project.year].filter(Boolean).map((t) => `<span class="tag">${esc(t)}</span>`).join("");
-        const links = (Array.isArray(project.links) ? project.links : [])
-          .map((link) => {
+        const actions = (Array.isArray(project.links) ? project.links : [])
+          .map((link, index) => {
             const url = safeUrl(link.url);
-            return url ? `<a class="ghost-link" href="${esc(url)}" target="_blank" rel="noopener">${esc(link.label)} ↗</a>` : "";
+            if (!url) return "";
+            const cls = index === 0 ? "pill-btn pill-btn--accent" : "pill-btn";
+            return `<a class="${cls}" href="${esc(url)}" target="_blank" rel="noopener">${esc(link.label)} <span aria-hidden="true">↗</span></a>`;
           })
           .join("");
         const credits = (Array.isArray(project.credits) ? project.credits : [])
           .map((item) => `<div><span>${esc(item.label)}</span><span>${esc(item.value)}</span></div>`)
           .join("");
-        const spreadCount = (Array.isArray(project.spreads) ? project.spreads.length : 0);
         return `
           <article class="project-feature" data-project="${pi}">
             <div class="project-copy">
@@ -341,12 +335,8 @@
               <div class="project-meta">
                 <div><span>类别</span><span>${esc(project.category)}</span></div>
                 <div><span>年份</span><span>${esc(project.year)}</span></div>
-                <div><span>跨页</span><span>${pad(spreadCount)} spreads</span></div>
               </div>
-              <div class="project-actions">
-                <button class="pill-btn pill-btn--accent" type="button" data-open-case="${pi}" ${spreadCount ? "" : "disabled"}>查看跨页 <span aria-hidden="true">↗</span></button>
-                ${links}
-              </div>
+              <div class="project-actions">${actions}</div>
             </div>
             <div class="project-cover" aria-hidden="true">
               <span class="cover-orbit"></span>
@@ -357,7 +347,7 @@
           </article>
           <div class="project-foot">
             <div class="credits">${credits}</div>
-            <span class="mono">CASE ${pad(pi + 1)} — ${pad(spreadCount)} SPREADS</span>
+            <span class="mono">PROJECT ${pad(pi + 1)} / ${esc(project.year)}</span>
           </div>`;
       })
       .join(`<div style="height:1px;background:var(--line-soft);margin:28px 0"></div>`);
@@ -370,8 +360,6 @@
         </header>
         ${blocks}
       </section>`;
-
-    initCase();
   }
 
   /* ---------- render: specimen ---------- */
