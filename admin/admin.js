@@ -524,10 +524,121 @@
     );
   }
 
+  function newDownload() {
+    return {
+      id: `download-${Date.now()}`,
+      title: "新文件",
+      version: "",
+      platform: "Windows",
+      date: new Date().toISOString().slice(0, 10),
+      size: "",
+      note: "",
+      featured: false,
+      files: [{ label: "主文件", kind: "primary", url: "", size: "", sha256: "" }],
+    };
+  }
+
+  function panelDownloads() {
+    const downloads = arr(state.content.downloads);
+    const cards = downloads
+      .map((item, di) => {
+        const files = arr(item.files);
+        const fileCards = files
+          .map(
+            (file, fi) => `
+          <div class="subcard">
+            <div class="subcard-head">
+              <span class="mono">FILE ${pad(fi + 1)} / ${esc(file.kind || "primary")}</span>
+              <div class="card-actions">
+                <button class="adm-btn adm-btn--sm" type="button" data-action="move-download-file" data-di="${di}" data-fi="${fi}" data-dir="-1">上移</button>
+                <button class="adm-btn adm-btn--sm" type="button" data-action="move-download-file" data-di="${di}" data-fi="${fi}" data-dir="1">下移</button>
+                <button class="adm-btn adm-btn--sm adm-btn--danger" type="button" data-action="remove-download-file" data-di="${di}" data-fi="${fi}">删除</button>
+              </div>
+            </div>
+            ${grid(
+              field("文件标签", `downloads.${di}.files.${fi}.label`, file.label, {
+                placeholder: "安装程序 / 分卷 1/3 / 镜像 · OneDrive",
+              }) +
+                selectField("类型", `downloads.${di}.files.${fi}.kind`, file.kind || "primary", [
+                  { value: "primary", label: "主文件" },
+                  { value: "part", label: "分卷" },
+                  { value: "mirror", label: "镜像 / 其他" },
+                ]) +
+                field("显示大小", `downloads.${di}.files.${fi}.size`, file.size, { placeholder: "1.8 GB" }) +
+                field("下载直链", `downloads.${di}.files.${fi}.url`, file.url, {
+                  full: true,
+                  placeholder: "https://github.com/.../releases/download/...",
+                }) +
+                field("SHA-256（可选）", `downloads.${di}.files.${fi}.sha256`, file.sha256, { full: true })
+            )}
+          </div>`
+          )
+          .join("");
+
+        return `
+          <article class="card">
+            <div class="card-head">
+              <h4><span>DOWNLOAD ${pad(di + 1)}</span>${esc(item.title || "未命名")}</h4>
+              <div class="card-actions">
+                <button class="adm-btn adm-btn--sm" type="button" data-action="move-download" data-di="${di}" data-dir="-1">上移</button>
+                <button class="adm-btn adm-btn--sm" type="button" data-action="move-download" data-di="${di}" data-dir="1">下移</button>
+                <button class="adm-btn adm-btn--sm adm-btn--danger" type="button" data-action="remove-download" data-di="${di}">删除条目</button>
+              </div>
+            </div>
+            ${grid(
+              field("标题", `downloads.${di}.title`, item.title) +
+                field("版本", `downloads.${di}.version`, item.version) +
+                field("平台", `downloads.${di}.platform`, item.platform, { placeholder: "Windows / Android / Linux" }) +
+                field("日期", `downloads.${di}.date`, item.date, { placeholder: "2026-11-01" }) +
+                field("总大小", `downloads.${di}.size`, item.size, { placeholder: "1.8 GB" }) +
+                selectField(
+                  "推荐",
+                  `downloads.${di}.featured`,
+                  item.featured === true || item.featured === "true" ? "true" : "false",
+                  [
+                    { value: "false", label: "否" },
+                    { value: "true", label: "推荐" },
+                  ]
+                ) +
+                field("锚点 ID", `downloads.${di}.id`, item.id, { hint: "用于链接与统计，可留空。" }) +
+                textarea("说明", `downloads.${di}.note`, item.note, { rows: 3 })
+            )}
+            <div class="subcard">
+              <div class="subcard-head">
+                <span class="mono">FILES / 文件（${files.length}）</span>
+                <button class="adm-btn adm-btn--sm" type="button" data-action="add-download-file" data-di="${di}">+ 添加文件</button>
+              </div>
+              ${fileCards || `<p class="empty-note">还没有文件。至少需要一个主文件。</p>`}
+            </div>
+          </article>`;
+      })
+      .join("");
+
+    const guide = `
+      <div class="note-box">
+        <p><b>文件本身不经过后台。</b>请先在 GitHub Releases 上传附件，再把直链填到这里。后台只保存索引、大小与校验值。</p>
+        <ol>
+          <li>打开 <a href="https://github.com/Lihongbo-Learn/lihongbo-learn.github.io/releases/new" target="_blank" rel="noopener">Releases → Draft a new release</a>。</li>
+          <li>Tag 例如 <code>v1.4.0</code>；单个附件必须小于 2 GiB（2,147,483,648 字节）。</li>
+          <li>超过 2 GB 用 7-Zip 分卷（每卷小于 2 GiB），所有分卷上传到同一个 Release。</li>
+          <li>发布后复制附件直链：<code>https://github.com/&lt;owner&gt;/&lt;repo&gt;/releases/download/&lt;tag&gt;/&lt;asset&gt;</code>。</li>
+          <li>计算 SHA-256：Windows <code>certutil -hashfile 文件 SHA256</code>；macOS/Linux <code>sha256sum 文件</code>。</li>
+          <li>回到这里填写文件条目，保存发布；下载页通常 1–2 分钟后更新。</li>
+        </ol>
+      </div>`;
+
+    return (
+      tabHead("04", "下载", "管理下载站的文件条目与直链。大文件请上传到 GitHub Releases，后台只保存索引与校验信息。") +
+      (cards || `<p class="empty-note">还没有下载条目。</p>`) +
+      `<button class="add-btn" type="button" data-action="add-download">+ 添加文件条目</button>` +
+      group("发布流程 / RELEASES", guide)
+    );
+  }
+
   function panelContact() {
     const c = state.content.contact || {};
     return (
-      tabHead("04", "联系", "邮箱、GitHub 与页脚版权说明。邮箱会同时出现在资料卡与页脚。") +
+      tabHead("05", "联系", "邮箱、GitHub 与页脚版权说明。邮箱会同时出现在资料卡与页脚。") +
       group(
         "联系方式",
         grid(
@@ -552,7 +663,7 @@
 
   function panelAccount() {
     return (
-      tabHead("05", "账户与仓库", "Token 只保存在本机浏览器；它等同于这个仓库的写权限，请不要分享。") +
+      tabHead("06", "账户与仓库", "Token 只保存在本机浏览器；它等同于这个仓库的写权限，请不要分享。") +
       group(
         "仓库",
         `<dl class="kv">
@@ -609,6 +720,7 @@
     site: panelSite,
     hero: panelHero,
     projects: panelProjects,
+    downloads: panelDownloads,
     contact: panelContact,
     account: panelAccount,
   };
@@ -917,12 +1029,16 @@
     const action = button.dataset.action;
     const pi = Number(button.dataset.pi);
     const i = Number(button.dataset.i);
+    const di = Number(button.dataset.di);
+    const fi = Number(button.dataset.fi);
     const dir = Number(button.dataset.dir || 0);
     const content = state.content;
     if (!content) return;
 
     const projects = arr(content.projects);
     content.projects = projects;
+    const downloads = arr(content.downloads);
+    content.downloads = downloads;
 
     switch (action) {
       case "add-project":
@@ -948,6 +1064,26 @@
         break;
       case "remove-credit":
         if (projects[pi] && Array.isArray(projects[pi].credits)) projects[pi].credits.splice(i, 1);
+        break;
+      case "add-download":
+        downloads.push(newDownload());
+        break;
+      case "remove-download":
+        if (!window.confirm("删除这个下载条目？")) return;
+        downloads.splice(di, 1);
+        break;
+      case "move-download":
+        moveItem(downloads, di, dir);
+        break;
+      case "add-download-file":
+        downloads[di].files = arr(downloads[di].files);
+        downloads[di].files.push({ label: "新文件", kind: "part", url: "", size: "", sha256: "" });
+        break;
+      case "remove-download-file":
+        if (downloads[di] && Array.isArray(downloads[di].files)) downloads[di].files.splice(fi, 1);
+        break;
+      case "move-download-file":
+        if (downloads[di]) moveItem(arr(downloads[di].files), fi, dir);
         break;
       case "clear-token": {
         if (!window.confirm("清除本机保存的 Token 并退出后台？")) return;

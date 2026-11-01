@@ -81,5 +81,118 @@
     "note": "讨论设计、字体或开源项目。欢迎来信。",
     "availability": "OPEN FOR COLLABORATION — 2026",
     "footer": "Set in Archivo & Songti. Built by hand with HTML, CSS and JavaScript. No cookies, no analytics."
-  }
+  },
+  "downloads": [
+    {
+      "id": "schoollink-windows",
+      "title": "SchoolLink 校联 · Windows",
+      "version": "0.2.0-dev",
+      "platform": "Windows",
+      "date": "2026-10-31",
+      "size": "53.5 MB",
+      "note": "教室大屏与教师端安装包。下载安装程序后按向导安装；也可使用免安装 ZIP。当前为开发预览版。",
+      "featured": true,
+      "files": [
+        {
+          "label": "安装程序 .exe",
+          "kind": "primary",
+          "url": "https://github.com/Lihongbo-Learn/SchoolLink/releases/download/v0.2.0-dev/SchoolLink-Setup-0.2.0_dev.exe",
+          "size": "53.5 MB",
+          "sha256": "a69a2f1439ee7c5675e4d34c0429878c07fe0399b010a2d8665f73b25e57b546"
+        },
+        {
+          "label": "免安装 ZIP",
+          "kind": "mirror",
+          "url": "https://github.com/Lihongbo-Learn/SchoolLink/releases/download/v0.2.0-dev/SchoolLink-Windows.zip",
+          "size": "76.1 MB",
+          "sha256": "674fce7b2f887138bac7337e785717e78096e180c019e6b15ff05c038f20efd8"
+        },
+        {
+          "label": "SHA256SUMS.txt",
+          "kind": "mirror",
+          "url": "https://github.com/Lihongbo-Learn/SchoolLink/releases/download/v0.2.0-dev/SHA256SUMS.txt",
+          "size": "452 B",
+          "sha256": "201b4f59b38711c19caffdd4b94181e03ea6d5c67707384506a7d66cd4978f69"
+        }
+      ]
+    },
+    {
+      "id": "schoollink-android",
+      "title": "SchoolLink 校联 · Android",
+      "version": "0.2.0-dev",
+      "platform": "Android",
+      "date": "2026-10-31",
+      "size": "69.3 MB",
+      "note": "Android 7+。安装前请允许“安装未知来源应用”。当前为开发预览版。",
+      "featured": true,
+      "files": [
+        {
+          "label": "Android APK",
+          "kind": "primary",
+          "url": "https://github.com/Lihongbo-Learn/SchoolLink/releases/download/v0.2.0-dev/SchoolLink-Android.apk",
+          "size": "69.3 MB",
+          "sha256": "454c77cf6ae050709fd9fedaa52c2c3a026d556fa5a15ceb15f4d6e8e0a1f728"
+        },
+        {
+          "label": "SHA256SUMS.txt",
+          "kind": "mirror",
+          "url": "https://github.com/Lihongbo-Learn/SchoolLink/releases/download/v0.2.0-dev/SHA256SUMS.txt",
+          "size": "452 B",
+          "sha256": "201b4f59b38711c19caffdd4b94181e03ea6d5c67707384506a7d66cd4978f69"
+        }
+      ]
+    },
+    {
+      "id": "schoollink-hub-windows",
+      "title": "SchoolLink Hub · Windows",
+      "version": "0.2.0-dev",
+      "platform": "Windows",
+      "date": "2026-10-31",
+      "size": "27.8 MB",
+      "note": "在教师机或服务器上运行，作为校园局域网 Hub，负责分发通知、文件与会话。",
+      "featured": false,
+      "files": [
+        {
+          "label": "Hub ZIP",
+          "kind": "primary",
+          "url": "https://github.com/Lihongbo-Learn/SchoolLink/releases/download/v0.2.0-dev/SchoolLinkHub.zip",
+          "size": "27.8 MB",
+          "sha256": "cf491a6d558968a8f786e4c32df375e1628583c4d39fba9d21b632beb3a7f33c"
+        },
+        {
+          "label": "SHA256SUMS.txt",
+          "kind": "mirror",
+          "url": "https://github.com/Lihongbo-Learn/SchoolLink/releases/download/v0.2.0-dev/SHA256SUMS.txt",
+          "size": "452 B",
+          "sha256": "201b4f59b38711c19caffdd4b94181e03ea6d5c67707384506a7d66cd4978f69"
+        }
+      ]
+    },
+    {
+      "id": "schoollink-hub-linux",
+      "title": "SchoolLink Hub · Linux",
+      "version": "0.2.0-dev",
+      "platform": "Linux",
+      "date": "2026-10-31",
+      "size": "24.5 MB",
+      "note": "适合 Linux 服务器或树莓派。解压后运行 Hub，浏览器访问管理界面。",
+      "featured": false,
+      "files": [
+        {
+          "label": "Hub tar.gz",
+          "kind": "primary",
+          "url": "https://github.com/Lihongbo-Learn/SchoolLink/releases/download/v0.2.0-dev/SchoolLinkHub-linux.tar.gz",
+          "size": "24.5 MB",
+          "sha256": "4cae4518c16f15d9a8135861185d57d66880c1df17c6c31f5dedc01163d2ecc3"
+        },
+        {
+          "label": "SHA256SUMS.txt",
+          "kind": "mirror",
+          "url": "https://github.com/Lihongbo-Learn/SchoolLink/releases/download/v0.2.0-dev/SHA256SUMS.txt",
+          "size": "452 B",
+          "sha256": "201b4f59b38711c19caffdd4b94181e03ea6d5c67707384506a7d66cd4978f69"
+        }
+      ]
+    }
+  ]
 }

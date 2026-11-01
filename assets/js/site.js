@@ -800,7 +800,7 @@
         </div>
         <div class="footer-block">
           <span class="mono">CONTACT</span>
-          <p>${email ? `<a href="mailto:${esc(email)}">${esc(email)}</a><br>` : ""}${github ? `<a href="${esc(github)}" target="_blank" rel="noopener">github.com/Lihongbo-Learn</a><br>` : ""}<a href="admin/">更新内容 / Admin ↗</a></p>
+          <p>${email ? `<a href="mailto:${esc(email)}">${esc(email)}</a><br>` : ""}${github ? `<a href="${esc(github)}" target="_blank" rel="noopener">github.com/Lihongbo-Learn</a><br>` : ""}<a href="downloads/">下载 / Downloads ↗</a><br><a href="admin/">更新内容 / Admin ↗</a></p>
         </div>
       </div>
       <div class="footer-bottom mono">

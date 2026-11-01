@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta name="Expires" content="0">
+  <title>下载 — 宛枯缘梦</title>
+  <meta name="description" content="宛枯缘梦的文件下载站。大文件托管于 GitHub Releases，本站提供索引、版本、大小与 SHA-256 校验。">
+  <meta name="theme-color" content="#060608">
+  <meta name="color-scheme" content="dark">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="下载 — 宛枯缘梦">
+  <meta property="og:description" content="文件托管于 GitHub Releases，本站提供索引与 SHA-256 校验。">
+  <meta property="og:url" content="https://lihongbo-learn.github.io/downloads/">
+  <meta property="og:image" content="https://lihongbo-learn.github.io/assets/img/og.png">
+
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="../assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/instrument-serif.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/space-mono-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="downloads.css?v=20261101d">
+</head>
+<body>
+  <a class="skip-link" href="#downloads-root">跳到文件列表</a>
+  <div class="sky" aria-hidden="true"></div>
+
+  <header class="dl-head">
+    <a class="dl-brand" href="../" aria-label="宛枯缘梦 — 返回首页">
+      <span class="dl-mark" aria-hidden="true">梦<i></i></span>
+      <span class="dl-brand-name">宛枯缘梦<em>DOWNLOADS</em></span>
+    </a>
+    <nav class="dl-nav" aria-label="主导航">
+      <a href="../">首页</a>
+      <a href="../#works">项目</a>
+      <a href="./" class="is-active">下载</a>
+      <a href="../#contact">联系</a>
+    </nav>
+    <a class="dl-gh" href="https://github.com/Lihongbo-Learn/lihongbo-learn.github.io/releases" target="_blank" rel="noopener">GitHub Releases <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <main>
+    <section class="dl-hero">
+      <span class="mono dl-kicker">DOWNLOADS / 文件下载</span>
+      <h1>下载<em>Files &amp; Releases</em></h1>
+      <p class="dl-lead">本站只保存文件索引与校验信息。文件托管在 GitHub Releases，支持大文件与分卷。</p>
+      <div class="dl-hero-meta mono">
+        <span id="dlCount">正在读取…</span>
+        <span>HOSTED ON GITHUB RELEASES</span>
+        <span>PUBLIC / NO LOGIN</span>
+      </div>
+    </section>
+
+    <section class="dl-body">
+      <div class="dl-toolbar">
+        <label class="dl-search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+          <input id="dlSearch" type="search" placeholder="搜索文件、版本或平台…" autocomplete="off">
+        </label>
+        <div class="dl-chips" id="dlChips" aria-label="按平台筛选"></div>
+      </div>
+
+      <div id="downloads-root" aria-live="polite">
+        <section class="dl-empty">
+          <span class="mono">LOADING / 读取中</span>
+          <h2>正在整理文件…</h2>
+        </section>
+      </div>
+
+      <aside class="dl-guide">
+        <div>
+          <span class="mono">LARGE FILES / 大文件</span>
+          <h2>为什么文件不在本站？</h2>
+          <p>主页部署在 GitHub Pages，单文件限制 100 MiB；大文件放在 GitHub Releases，单个附件上限 2 GiB，官方文档不限制 Release 总大小与下载带宽（受合理使用约束）。</p>
+          <p>超过 2 GB 的文件会拆成多个分卷，每个分卷都列在文件卡片里；全部分卷下载到同一目录后，解压第 1 个分卷即可。</p>
+        </div>
+        <div>
+          <span class="mono">BEFORE DOWNLOAD / 下载前</span>
+          <ul>
+            <li>核对文件大小与 SHA-256。</li>
+            <li>大文件建议使用浏览器或下载工具，支持断点续传。</li>
+            <li>GitHub 下载速度受网络环境影响，可优先使用镜像。</li>
+            <li>所有文件公开；需要密码的文件会单独说明。</li>
+          </ul>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="dl-foot">
+    <a href="../">← 返回首页</a>
+    <a href="https://github.com/Lihongbo-Learn/lihongbo-learn.github.io/releases" target="_blank" rel="noopener">GitHub Releases ↗</a>
+    <a href="../admin/">后台 / Admin</a>
+    <span class="mono">© 2026 宛枯缘梦</span>
+  </footer>
+
+  <div class="dl-toast" id="dlToast" role="status" aria-live="polite"></div>
+  <script src="downloads.js?v=20261101d" defer></script>
+</body>
+</html>
