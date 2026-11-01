@@ -215,8 +215,7 @@
     const email = plainText(contact.email);
     const github = safeUrl(contact.github);
     const projects = (Array.isArray(c.projects) ? c.projects : []).map((p) => p.title).join(" / ");
-    const specimen = c.specimen && c.specimen.title ? c.specimen.title : "Type Specimen";
-    const now = projects ? `正在做 ${projects}，以及 ${specimen}。` : `正在做 ${specimen}。`;
+    const now = projects ? `正在做 ${projects}，以及一套字体样张。` : "正在做一套字体样张。";
 
     $("#profile-root").innerHTML = `
       <div class="card profile-card reveal">
@@ -295,7 +294,6 @@
         </header>
         <div class="about-body">
           <div>
-            <h2 class="card-title">${esc(a.title).replace(/\n/g, "<br>")}<em>Design · Type · Code</em></h2>
             <p class="about-text">${esc(a.text)}</p>
             <p class="about-note">${esc(a.note)}</p>
             <div class="tag-row">${focus}</div>
@@ -425,7 +423,6 @@
           </div>
           <div class="specimen-copy">
             <span class="mono">${esc(s.subtitle)}</span>
-            <h3>${esc(s.title)}</h3>
             <p class="lead">${esc(s.body)}</p>
             <div class="axis-controls">
               <div class="axis-control">
@@ -610,7 +607,6 @@
           <span class="card-kicker mono">04 / PALETTE</span>
           <span class="mono">色板</span>
         </header>
-        <p class="palette-caption">纸、墨与一管星蓝。拖动胶片条，像翻看印刷打样那样核对待用颜色；点击色卡复制色值。</p>
         <div class="film">
           <div class="film-track" id="filmTrack" aria-label="色板胶片条，可拖动">${cards}</div>
         </div>

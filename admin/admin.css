@@ -19,17 +19,21 @@
 }
 
 :root {
-  --paper: #f2efe6;
-  --paper-2: #e9e4d6;
-  --paper-3: #ded7c5;
-  --ink: #14120f;
-  --ink-80: rgba(20, 18, 15, 0.8);
-  --ink-60: rgba(20, 18, 15, 0.6);
-  --ink-40: rgba(20, 18, 15, 0.4);
-  --ink-20: rgba(20, 18, 15, 0.2);
-  --rule: rgba(20, 18, 15, 0.24);
+  --paper: #060608;
+  --paper-2: #0d0d15;
+  --paper-3: #15151f;
+  --ink: #f3f1ea;
+  --ink-80: rgba(243, 241, 234, 0.8);
+  --ink-60: rgba(243, 241, 234, 0.6);
+  --ink-40: rgba(243, 241, 234, 0.4);
+  --ink-20: rgba(243, 241, 234, 0.18);
+  --rule: rgba(255, 255, 255, 0.14);
   --signal: #e8440f;
-  --ok: #156b4a;
+  --accent: #8b9cff;
+  --accent-2: #c2cbff;
+  --accent-soft: rgba(139, 156, 255, 0.14);
+  --accent-line: rgba(139, 156, 255, 0.34);
+  --ok: #6ee7a8;
   --font-display: "Archivo Variable", "Helvetica Neue", Arial, sans-serif;
   --font-serif: "Instrument Serif", "Songti SC", "Noto Serif SC", "SimSun", serif;
   --font-mono: "Space Mono", ui-monospace, Menlo, Consolas, monospace;
@@ -962,4 +966,233 @@ ol {
   .gate-card {
     box-shadow: 8px 8px 0 var(--paper-3);
   }
+}
+
+/* ============================================================
+   Dark studio theme — matches the homepage
+   ============================================================ */
+html {
+  color-scheme: dark;
+}
+body {
+  background: var(--paper);
+  position: relative;
+}
+.adm-sky {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, rgba(255, 255, 255, 0.55), transparent 100%),
+    radial-gradient(1.4px 1.4px at 70% 60%, rgba(160, 174, 255, 0.5), transparent 100%),
+    radial-gradient(1px 1px at 45% 80%, rgba(255, 255, 255, 0.4), transparent 100%),
+    radial-gradient(1.2px 1.2px at 85% 20%, rgba(255, 255, 255, 0.35), transparent 100%);
+  background-size: 240px 240px, 320px 320px, 200px 200px, 280px 280px;
+  opacity: 0.65;
+  animation: admDrift 90s linear infinite;
+}
+.adm-sky::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(40% 46% at 76% 18%, rgba(90, 108, 255, 0.2), transparent 68%),
+    radial-gradient(34% 40% at 18% 24%, rgba(146, 92, 255, 0.12), transparent 70%);
+  filter: blur(40px);
+}
+@keyframes admDrift {
+  to {
+    background-position: 240px 480px, -320px 320px, 200px -400px, 280px 280px;
+  }
+}
+.adm-app,
+.gate {
+  position: relative;
+  z-index: 1;
+}
+.adm-head {
+  background: rgba(6, 6, 8, 0.72);
+  border-bottom: 1px solid var(--rule);
+  backdrop-filter: blur(18px) saturate(1.2);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+}
+.adm-brand-mark {
+  color: var(--accent-2);
+}
+.adm-brand-mark i {
+  background: #e9a13b;
+  box-shadow: 0 0 8px #e9a13b;
+}
+.adm-status {
+  color: var(--ink-60);
+}
+.adm-side {
+  background: rgba(10, 10, 16, 0.45);
+  border-right: 1px solid var(--rule);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+.adm-nav button:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+.adm-nav button.is-active {
+  background: var(--accent);
+  color: #08080f;
+}
+.adm-nav button.is-active span {
+  color: rgba(8, 8, 15, 0.55);
+}
+.adm-btn {
+  border-radius: 10px;
+  border-color: var(--rule);
+}
+.adm-btn:hover {
+  border-color: var(--accent-line);
+  background: rgba(255, 255, 255, 0.06);
+}
+.adm-btn--primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #08080f;
+}
+.adm-btn--primary:hover {
+  background: var(--accent-2);
+  border-color: var(--accent-2);
+  color: #08080f;
+}
+.adm-btn--danger:hover {
+  color: var(--paper);
+}
+.adm-input {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: var(--rule);
+  border-radius: 10px;
+  color: var(--ink);
+}
+.adm-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-soft);
+}
+.adm-message {
+  background: rgba(10, 10, 16, 0.92);
+  border-bottom: 1px solid var(--rule);
+  backdrop-filter: blur(14px);
+}
+.adm-message.is-error {
+  background: rgba(232, 68, 15, 0.94);
+}
+.adm-toast {
+  background: rgba(12, 12, 20, 0.92);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  backdrop-filter: blur(14px);
+}
+.gate-card {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+  border: 1px solid var(--rule);
+  border-radius: 24px;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+}
+.gate-card > .mono {
+  color: var(--accent);
+}
+.gate-help {
+  border-top-color: var(--rule);
+}
+.gate-help a:hover {
+  color: var(--accent-2);
+  border-color: var(--accent-line);
+}
+.gate-help code {
+  background: rgba(255, 255, 255, 0.06);
+}
+.gate-secure {
+  background: rgba(232, 68, 15, 0.08);
+  color: var(--ink-60);
+}
+.card {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018));
+  border: 1px solid var(--rule);
+  border-radius: 18px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+.subcard {
+  border-left-color: var(--rule);
+}
+.file-field {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px dashed var(--rule);
+  border-radius: 12px;
+}
+.file-thumb {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--rule);
+  border-radius: 8px;
+}
+.upload-label {
+  border-color: var(--rule);
+  border-radius: 8px;
+}
+.upload-label:hover {
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+}
+.add-btn {
+  border-color: var(--rule);
+  border-radius: 12px;
+  color: var(--ink-60);
+}
+.add-btn:hover {
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+.token-box {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--rule);
+  border-radius: 12px;
+}
+.note-box {
+  background: var(--accent-soft);
+  border-left-color: var(--accent);
+  color: var(--ink-60);
+}
+.color-row input[type="color"] {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--rule);
+  border-radius: 8px;
+}
+.link-line a:hover {
+  color: var(--accent-2);
+  border-color: var(--accent-line);
+}
+.adm-side-foot {
+  color: var(--ink-60);
+}
+.adm-side-foot .mono {
+  color: var(--ink-40);
+}
+@media (prefers-reduced-motion: reduce) {
+  .adm-sky {
+    animation: none;
+  }
+}
+
+.adm-message,
+.adm-toast {
+  color: var(--ink);
+}
+.gate-remember input {
+  accent-color: var(--accent);
+}
+:focus-visible {
+  outline-color: var(--accent);
+}
+::selection {
+  background: var(--accent);
+  color: #08080f;
 }
