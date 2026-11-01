@@ -246,7 +246,6 @@
   function renderStats(c) {
     const projects = Array.isArray(c.projects) ? c.projects : [];
     const spreads = state.flatSpreads.length;
-    const talks = Array.isArray(c.talks) ? c.talks.length : 0;
     const now = new Date();
     const updated = `${c.meta && c.meta.year ? c.meta.year : now.getFullYear()}.${pad(now.getMonth() + 1)}`;
 
@@ -256,7 +255,6 @@
         <div class="stats-list">
           <div><span>项目</span><b>${pad(projects.length)}</b></div>
           <div><span>跨页</span><b>${pad(spreads)}</b></div>
-          <div><span>讲座</span><b>${pad(talks)}</b></div>
           <div><span>更新</span><b>${esc(updated)}</b></div>
         </div>
       </div>
@@ -264,8 +262,7 @@
         <span class="card-kicker mono">INDEX / 索引</span>
         <div class="index-list">
           <a href="#works"><span>01</span>项目<em>Works</em></a>
-          <a href="#talks"><span>02</span>讲座<em>Talks</em></a>
-          <a href="#contact"><span>03</span>联系<em>Contact</em></a>
+          <a href="#contact"><span>02</span>联系<em>Contact</em></a>
         </div>
       </div>
       <div class="card side-card side-note reveal" style="--d:160ms">
@@ -778,7 +775,7 @@
     $("#contact-root").innerHTML = `
       <section class="card contact-card reveal" id="contact">
         <header class="card-head">
-          <span class="card-kicker mono">03 / CONTACT</span>
+          <span class="card-kicker mono">02 / CONTACT</span>
           <span class="mono">联系</span>
         </header>
         <span class="hero-greeting mono" style="display:flex;width:max-content;margin-bottom:18px">${esc(contact.availability)}</span>
@@ -1244,7 +1241,7 @@
     const navLinks = $$("#mastNav a");
     const dockLinks = $$(".dock a[data-dock]");
     const bar = $("#scrollProgress");
-    const sections = ["top", "works", "talks", "contact"]
+    const sections = ["top", "works", "contact"]
       .map((id) => document.getElementById(id))
       .filter(Boolean);
 
@@ -1339,7 +1336,6 @@
       renderHero(content);
       renderProfile(content);
       renderWorks(content);
-      renderTalks(content);
       renderContact(content);
       renderStats(content);
       renderFooter(content);

@@ -594,7 +594,7 @@
   function panelContact() {
     const c = state.content.contact || {};
     return (
-      tabHead("05", "联系", "邮箱、GitHub 与页脚版权说明。邮箱会同时出现在资料卡与页脚。") +
+      tabHead("04", "联系", "邮箱、GitHub 与页脚版权说明。邮箱会同时出现在资料卡与页脚。") +
       group(
         "联系方式",
         grid(
@@ -619,7 +619,7 @@
 
   function panelAccount() {
     return (
-      tabHead("06", "账户与仓库", "Token 只保存在本机浏览器；它等同于这个仓库的写权限，请不要分享。") +
+      tabHead("05", "账户与仓库", "Token 只保存在本机浏览器；它等同于这个仓库的写权限，请不要分享。") +
       group(
         "仓库",
         `<dl class="kv">
@@ -676,7 +676,6 @@
     site: panelSite,
     hero: panelHero,
     projects: panelProjects,
-    talks: panelTalks,
     contact: panelContact,
     account: panelAccount,
   };
@@ -991,7 +990,6 @@
 
     const projects = arr(content.projects);
     content.projects = projects;
-    content.talks = arr(content.talks);
 
     switch (action) {
       case "add-project":
@@ -1030,16 +1028,6 @@
         break;
       case "move-spread":
         if (projects[pi]) moveItem(arr(projects[pi].spreads), i, dir);
-        break;
-      case "add-talk":
-        content.talks.push(newTalk());
-        break;
-      case "remove-talk":
-        if (!window.confirm("删除这条讲座记录？")) return;
-        content.talks.splice(i, 1);
-        break;
-      case "move-talk":
-        moveItem(content.talks, i, dir);
         break;
       case "clear-token": {
         if (!window.confirm("清除本机保存的 Token 并退出后台？")) return;

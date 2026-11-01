@@ -1,6 +1,6 @@
 # 宛枯缘梦 — 个人主页
 
-一个深色、星空背景的个人主页：玻璃卡片版面、逐字打出的首屏、可切换的项目跨页、讲座与联系，以及一个不需要写代码的可视化后台。
+一个深色、星空背景的个人主页：玻璃卡片版面、逐字打出的首屏、可切换的项目跨页与联系方式，以及一个不需要写代码的可视化后台。
 
 - 线上地址：<https://lihongbo-learn.github.io/>
 - 后台：<https://lihongbo-learn.github.io/admin/>
@@ -49,7 +49,7 @@ uploads/                   后台上传的图片
    - Repository access：只选 `Lihongbo-Learn/lihongbo-learn.github.io`
    - Permissions → Contents：**Read and write**
 2. 打开 `/admin/`，粘贴 Token，连接仓库。
-3. 左侧可编辑：站点、首屏、项目与跨页、讲座、联系、账户。
+3. 左侧可编辑：站点、首屏、项目与跨页、联系、账户。
 4. 右上角「保存并发布」会把 `content/site.json` 提交到 `main`。GitHub Pages 通常 1–2 分钟重建完成（CDN 可能再缓存约 10 分钟）。
 5. 图片可以在对应字段直接上传，会写入 `uploads/`。
 

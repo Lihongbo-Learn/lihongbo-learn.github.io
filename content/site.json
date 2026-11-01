@@ -3,7 +3,7 @@
     "issue": "01",
     "year": "2026",
     "title": "宛枯缘梦 — 个人主页",
-    "description": "宛枯缘梦的个人主页：设计与前端作品。收录 SchoolLink 校联与分享记录。"
+    "description": "宛枯缘梦的个人主页：设计与前端作品。收录 SchoolLink 校联。"
   },
   "hero": {
     "greeting": "你好，我是",
@@ -117,16 +117,6 @@
           "visual": "signal"
         }
       ]
-    }
-  ],
-  "talks": [
-    {
-      "title": "SchoolLink：在没有互联网的教室里做设计",
-      "event": "项目复盘 · 校内分享",
-      "date": "2026",
-      "video": "",
-      "poster": "",
-      "note": "从一枚图标讲到一条离线链路，复盘校联从草图到上线的全过程。录像整理中，稍后上传。"
     }
   ],
   "contact": {
