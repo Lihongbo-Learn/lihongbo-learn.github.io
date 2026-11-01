@@ -1,6 +1,10 @@
 .shots/
+.shots-admin/
+.shots-live/
 .ref/
 .capture.mjs
+.tmp-*.mjs
 node_modules/
 .DS_Store
 Thumbs.db
+worker/node_modules/

@@ -268,7 +268,12 @@
           field("站点标题", "meta.title", c.meta && c.meta.title, { full: true, hint: "浏览器标签页与分享卡片标题。" }) +
             textarea("站点描述", "meta.description", c.meta && c.meta.description, { rows: 3 }) +
             field("期号 Issue", "meta.issue", c.meta && c.meta.issue, { placeholder: "01" }) +
-            field("年份", "meta.year", c.meta && c.meta.year, { placeholder: "2026" })
+            field("年份", "meta.year", c.meta && c.meta.year, { placeholder: "2026" }) +
+            field("上传服务地址（Cloudflare Worker）", "downloadsApi", c.downloadsApi, {
+              full: true,
+              placeholder: "https://wankuyuanmeng-downloads.<subdomain>.workers.dev",
+              hint: "部署 worker/ 后填写；留空时下载页隐藏上传入口。",
+            })
         )
       )
     );
@@ -619,6 +624,7 @@
       <div class="note-box">
         <p><b>文件本身不经过后台。</b>请先在 GitHub Releases 上传附件，再把直链填到这里。后台只保存索引、大小与校验值。</p>
         <p><b>加速镜像：</b>下载页会自动为所有 github.com 文件追加 <code>gh-proxy.org</code> 镜像，当前和以后新增的文件都无需另填；原始 GitHub 链接仍保留。</p>
+        <p><b>授权上传：</b>下载页的「投稿 / 上传」通过 Cloudflare Worker 直传 R2，不写入本仓库；先在站点设置里填好 Worker 地址。</p>
         <ol>
           <li>打开 <a href="https://github.com/Lihongbo-Learn/lihongbo-learn.github.io/releases/new" target="_blank" rel="noopener">Releases → Draft a new release</a>。</li>
           <li>Tag 例如 <code>v1.4.0</code>；单个附件必须小于 2 GiB（2,147,483,648 字节）。</li>
@@ -630,7 +636,7 @@
       </div>`;
 
     return (
-      tabHead("04", "下载", "管理下载站的文件条目与直链。大文件请上传到 GitHub Releases，后台只保存索引与校验信息。") +
+      tabHead("04", "下载", "这里管理 GitHub Releases 静态条目；授权用户从 /downloads/ 上传的文件存 R2，会自动出现在下载页。") +
       (cards || `<p class="empty-note">还没有下载条目。</p>`) +
       `<button class="add-btn" type="button" data-action="add-download">+ 添加文件条目</button>` +
       group("发布流程 / RELEASES", guide)

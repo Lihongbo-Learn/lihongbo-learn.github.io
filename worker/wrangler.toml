@@ -1,0 +1,20 @@
+name = "wankuyuanmeng-downloads"
+main = "src/index.js"
+compatibility_date = "2026-11-01"
+workers_dev = true
+
+[[r2_buckets]]
+binding = "FILES"
+bucket_name = "wankuyuanmeng-files"
+
+[[kv_namespaces]]
+binding = "META"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+[vars]
+ALLOWED_ORIGIN = "https://lihongbo-learn.github.io,http://localhost:8080"
+R2_BUCKET_NAME = "wankuyuanmeng-files"
+MAX_UPLOAD_BYTES = "5368709120"
+
+# Secrets (set with `wrangler secret put`, never in this file):
+# AUTH_CODE, AUTH_SECRET, R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY

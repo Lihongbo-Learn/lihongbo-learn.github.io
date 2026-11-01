@@ -118,11 +118,31 @@ Token 只保存在你浏览器的 localStorage / sessionStorage，不会提交�
 
 下载页会自动为所有 `github.com` 文件追加 `https://gh-proxy.org/<原 GitHub URL>` 加速镜像；当前和以后新增的文件都不需要另填镜像字段。原始 GitHub 链接仍然保留。镜像由第三方提供，失效时请使用原链，并用 SHA-256 校验文件。
 
+### 授权上传（R2 + Worker）
+
+下载页（`/downloads/`）支持授权用户登录后上传文件：
+
+- 任意用户名 + 共享注册码（注册码只存在 Worker secret 中，不写进页面）
+- 文件通过预签名 URL **直传 Cloudflare R2**，不经过 Worker 请求体，支持 1GB+
+- 上传者可选填文件密码；Worker 用 PBKDF2 存储密码哈希，R2 桶保持私有，下载经 Worker 鉴权后流式转发
+- 上传成功后自动出现在下载页，其他访客可直接看到
+- 上传文件存 R2，不进 GitHub Release；GitHub Release 继续用于站长自己发布的静态条目
+
+部署：
+
+1. 按 [`worker/README.md`](worker/README.md) 创建 R2、KV、secrets 并 `wrangler deploy`。
+2. 后台 → 站点 → 填入「上传服务地址（Cloudflare Worker）」。
+3. 保存后下载页出现「投稿 / 上传」按钮。
+
+Worker 部署需要你自己的 Cloudflare 账号与 R2 API 凭据；未配置前上传入口会隐藏，下载功能不受影响。
+
 ### 公开与限制
 
-- Release 附件公开，任何拿到直链的人都能下载；需要密码时上传加密压缩包并线下发送密码。
+- GitHub Release 附件公开；需要密码的 GitHub 文件请上传加密压缩包并线下发送密码。
+- R2 投稿文件默认也公开；设置了文件密码的条目由 Worker 校验后才可下载。
 - 大文件下载速度受网络影响；页面预留 `mirror`，可填 R2 / B2 / OneDrive 等镜像。
 - GitHub 合理使用条款适用；不要把 Releases 当作高并发 CDN。
+- Cloudflare R2 / Workers 有免费额度限制；投稿文件请在 R2 Dashboard 定期清理。
 
 ## 内容约定
 

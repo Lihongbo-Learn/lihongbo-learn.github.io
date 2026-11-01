@@ -1,0 +1,13 @@
+[
+  {
+    "AllowedOrigins": [
+      "https://lihongbo-learn.github.io",
+      "http://localhost:8080",
+      "http://127.0.0.1:8080"
+    ],
+    "AllowedMethods": ["PUT", "GET", "HEAD"],
+    "AllowedHeaders": ["*"],
+    "ExposeHeaders": ["ETag"],
+    "MaxAgeSeconds": 3600
+  }
+]

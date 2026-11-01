@@ -21,7 +21,7 @@
   <link rel="preload" href="../assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/instrument-serif.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/space-mono-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="downloads.css?v=20261101e">
+  <link rel="stylesheet" href="downloads.css?v=20261101f">
 </head>
 <body>
   <a class="skip-link" href="#downloads-root">跳到文件列表</a>
@@ -38,6 +38,7 @@
       <a href="./" class="is-active">下载</a>
       <a href="../#contact">联系</a>
     </nav>
+    <button class="dl-upload-open" id="uploadOpen" type="button" hidden>投稿 / 上传 <span aria-hidden="true">↑</span></button>
     <a class="dl-gh" href="https://github.com/Lihongbo-Learn/lihongbo-learn.github.io/releases" target="_blank" rel="noopener">GitHub Releases <span aria-hidden="true">↗</span></a>
   </header>
 
@@ -97,7 +98,107 @@
     <span class="mono">© 2026 宛枯缘梦</span>
   </footer>
 
+  <div class="dl-modal" id="uploadModal" hidden>
+    <div class="dl-modal-backdrop" data-close-upload></div>
+    <div class="dl-modal-panel" role="dialog" aria-modal="true" aria-labelledby="uploadTitle">
+      <header class="dl-modal-head">
+        <span class="mono">UPLOAD / 投稿</span>
+        <button class="dl-modal-close" id="uploadClose" type="button">关闭 <span aria-hidden="true">✕</span></button>
+      </header>
+      <div class="dl-modal-body">
+        <section id="loginPane">
+          <span class="mono dl-modal-kicker">AUTHORIZED UPLOAD</span>
+          <h2 id="uploadTitle">授权上传</h2>
+          <p class="dl-modal-note">下载不需要登录。上传需要用户名和注册码；注册码由站长提供，用户名可以随意填写。</p>
+          <form class="dl-form" id="loginForm" autocomplete="off">
+            <label class="dl-field">
+              <span>用户名</span>
+              <input id="loginUser" type="text" maxlength="40" required autocomplete="username" placeholder="任意用户名">
+            </label>
+            <label class="dl-field">
+              <span>注册码</span>
+              <input id="loginCode" type="password" inputmode="numeric" maxlength="64" required autocomplete="one-time-code" placeholder="输入共享注册码">
+            </label>
+            <p class="dl-form-status" id="loginStatus"></p>
+            <button class="dl-btn" type="submit">登录 <span aria-hidden="true">→</span></button>
+          </form>
+        </section>
+
+        <section id="uploadPane" hidden>
+          <div class="dl-session">
+            <div><span class="mono">SIGNED IN / 已登录</span><strong id="whoami"></strong></div>
+            <button class="dl-logout" id="logoutBtn" type="button">退出登录</button>
+          </div>
+          <form class="dl-form" id="uploadForm">
+            <label class="dl-field">
+              <span>文件</span>
+              <input id="upFile" type="file" required>
+            </label>
+            <p class="dl-file-meta" id="uploadFileMeta">文件会直传 R2，不经过页面服务器。</p>
+            <div class="dl-form-row">
+              <label class="dl-field">
+                <span>标题</span>
+                <input id="upTitle" type="text" maxlength="120" placeholder="默认使用文件名">
+              </label>
+              <label class="dl-field">
+                <span>版本</span>
+                <input id="upVersion" type="text" maxlength="40" placeholder="如 1.0.0">
+              </label>
+            </div>
+            <div class="dl-form-row">
+              <label class="dl-field">
+                <span>平台</span>
+                <select id="upPlatform">
+                  <option>Windows</option>
+                  <option>Android</option>
+                  <option>Linux</option>
+                  <option>macOS</option>
+                  <option>其他</option>
+                </select>
+              </label>
+              <label class="dl-field">
+                <span>文件密码（可选）</span>
+                <input id="upPassword" type="password" maxlength="200" autocomplete="new-password" placeholder="留空表示公开下载">
+              </label>
+            </div>
+            <label class="dl-field">
+              <span>说明</span>
+              <textarea id="upNote" rows="3" maxlength="1000" placeholder="文件说明、解压方式、适用环境…"></textarea>
+            </label>
+            <div class="dl-progress" id="uploadProgress" hidden><i></i></div>
+            <p class="dl-form-status" id="uploadStatus"></p>
+            <button class="dl-btn" type="submit" id="uploadSubmit">上传到 R2 <span aria-hidden="true">↑</span></button>
+            <p class="dl-form-hint">单个文件上限由服务端配置；设置了密码的文件只有输入密码才能下载。</p>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div class="dl-modal" id="unlockModal" hidden>
+    <div class="dl-modal-backdrop" data-close-unlock></div>
+    <div class="dl-modal-panel" role="dialog" aria-modal="true" aria-labelledby="unlockTitle">
+      <header class="dl-modal-head">
+        <span class="mono">PROTECTED / 密码下载</span>
+        <button class="dl-modal-close" id="unlockClose" type="button">关闭 <span aria-hidden="true">✕</span></button>
+      </header>
+      <div class="dl-modal-body">
+        <span class="mono dl-modal-kicker">PASSWORD REQUIRED</span>
+        <h2 id="unlockTitle">此文件需要密码</h2>
+        <p class="dl-modal-note" id="unlockNote">输入上传者设置的文件密码后开始下载。</p>
+        <form class="dl-form" id="unlockForm">
+          <label class="dl-field">
+            <span>文件密码</span>
+            <input id="unlockPassword" type="password" maxlength="200" required autocomplete="current-password" placeholder="输入文件密码">
+          </label>
+          <p class="dl-form-status" id="unlockStatus"></p>
+          <button class="dl-btn" type="submit">解锁并下载 <span aria-hidden="true">↓</span></button>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <div class="dl-toast" id="dlToast" role="status" aria-live="polite"></div>
-  <script src="downloads.js?v=20261101e" defer></script>
+  <script src="downloads.js?v=20261101f" defer></script>
 </body>
 </html>
