@@ -1,0 +1,6 @@
+.shots/
+.ref/
+.capture.mjs
+node_modules/
+.DS_Store
+Thumbs.db

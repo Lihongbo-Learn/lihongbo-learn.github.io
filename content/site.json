@@ -1,0 +1,196 @@
+{
+  "meta": {
+    "issue": "01",
+    "year": "2026",
+    "title": "宛枯缘梦 — 个人主页",
+    "description": "宛枯缘梦的个人主页：设计、字体与代码。收录 SchoolLink 校联、字体样张与若干实验。"
+  },
+  "hero": {
+    "greeting": "你好，我是",
+    "name": "宛枯缘梦",
+    "nameLatin": "WANKUYUANMENG",
+    "motto": "宛转枯荣，缘起梦生。",
+    "tagline": "在字体、界面与代码之间，设计可被使用的系统。",
+    "roles": [
+      "设计与前端",
+      "独立开发",
+      "开源作者",
+      "字体实验"
+    ],
+    "typingPrefix": "正在",
+    "typing": [
+      "让通知抵达每一块大屏",
+      "把字体排成一本册子",
+      "把想法写成可用的代码",
+      "做一个离线也能用的系统"
+    ],
+    "avatar": "assets/img/avatar.png",
+    "location": "CN / 2026",
+    "note": "本册收录 2026 年的一个系统与若干字体实验。",
+    "cta": [
+      {
+        "label": "查看项目",
+        "href": "#works",
+        "kind": "primary"
+      },
+      {
+        "label": "关于我",
+        "href": "#about",
+        "kind": "ghost"
+      }
+    ]
+  },
+  "about": {
+    "kicker": "ABOUT / 关于",
+    "title": "把界面、字体与代码\n装订在一起。",
+    "text": "我做界面、标识与前端实现。相信好的系统应当像一本装订得当的书：结构清楚，细节克制，拿在手里有分量。",
+    "note": "目前专注校园场景内的离线工具，以及在浏览器里发生的字体与动效实验。",
+    "focus": [
+      "界面设计",
+      "前端实现",
+      "字体与版式",
+      "离线工具"
+    ]
+  },
+  "projects": [
+    {
+      "id": "schoollink",
+      "title": "SchoolLink",
+      "titleCn": "校联",
+      "category": "产品 · 标识 · 前端",
+      "year": "2026",
+      "image": "assets/img/schoollink-icon.png",
+      "summary": "面向校园局域网的通知与文件分发系统。让通知抵达每一块教室大屏，即使没有互联网。",
+      "links": [
+        {
+          "label": "项目主页",
+          "url": "https://lihongbo-learn.github.io/SchoolLink/"
+        },
+        {
+          "label": "源码",
+          "url": "https://github.com/Lihongbo-Learn/SchoolLink"
+        }
+      ],
+      "credits": [
+        {
+          "label": "设计 / 开发",
+          "value": "宛枯缘梦"
+        },
+        {
+          "label": "平台",
+          "value": "Flutter · Windows · Android · Web"
+        },
+        {
+          "label": "许可",
+          "value": "MIT"
+        }
+      ],
+      "spreads": [
+        {
+          "kicker": "01 — 标识 / IDENTITY",
+          "title": "一枚印章，一束信号",
+          "body": [
+            "校联的标识从教室里的“校”字出发：圆角方形像一块屏幕，琥珀色圆点是一则尚未读到的通知。",
+            "标识只保留两种颜色——深绿与琥珀。它需要在大屏、手机与打印物上同时成立，因此所有细节都按“缩小到 16px 仍可辨认”的标准绘制。"
+          ],
+          "aside": "“缩小到 16px，仍然成立。”",
+          "image": "assets/img/schoollink-icon.png",
+          "imageAlt": "校联应用图标，深绿色圆角方形内一个白色的“校”字，右上角一枚琥珀色圆点",
+          "caption": "图 01 — 标识 / 2026",
+          "plate": "green",
+          "visual": "mark"
+        },
+        {
+          "kicker": "02 — 系统 / SYSTEM",
+          "title": "一条链路，三种终端",
+          "body": [
+            "教师端发送，Hub 分发，教室大屏接收。原生端优先走局域网直连，不可用时自动回退到 Hub，断网后补齐。",
+            "界面沿用同一套语法：深绿是背景，纸白是信息，琥珀只留给“需要被看见”的动作。"
+          ],
+          "aside": "“深绿是背景，纸白是信息，琥珀只留给动作。”",
+          "image": "",
+          "imageAlt": "",
+          "caption": "图 02 — 局域网链路 / 示意",
+          "plate": "paper",
+          "visual": "diagram"
+        },
+        {
+          "kicker": "03 — 界面 / INTERFACE",
+          "title": "没有 Wi-Fi，也要抵达",
+          "body": [
+            "整套产品可完全离线部署。首页的功能卡片、安装页与教室模式，共用一套 8pt 网格与两档字重。",
+            "在移动端，信息被压进单列；在教室大屏上，一条通知占据整个画面——这是产品里唯一的“全屏”。"
+          ],
+          "aside": "“全屏只留给真正重要的通知。”",
+          "image": "",
+          "imageAlt": "",
+          "caption": "图 03 — 离线通知 / 版式",
+          "plate": "ink",
+          "visual": "signal"
+        }
+      ]
+    }
+  ],
+  "specimen": {
+    "title": "Type Specimen No. 01",
+    "subtitle": "Archivo Variable × 系统宋体",
+    "body": "样张以十二栏网格排布，展开 Archivo 的字宽与字重轴。中文部分使用系统宋体，与无衬线拉丁文形成印刷式的对照。",
+    "lines": [
+      "Aa",
+      "宛枯缘梦",
+      "WANKUYUANMENG",
+      "2026"
+    ],
+    "pdf": "assets/wankuyuanmeng-specimen.pdf",
+    "note": "A4 / 4 页 / 可打印 / 字体已嵌入"
+  },
+  "palette": [
+    {
+      "name": "Void",
+      "cn": "深夜",
+      "hex": "#060608"
+    },
+    {
+      "name": "Mist",
+      "cn": "雾白",
+      "hex": "#F4F2EC"
+    },
+    {
+      "name": "Periwinkle",
+      "cn": "星蓝",
+      "hex": "#8B9CFF"
+    },
+    {
+      "name": "Moss",
+      "cn": "苔绿",
+      "hex": "#0E3B2E"
+    },
+    {
+      "name": "Amber",
+      "cn": "琥珀",
+      "hex": "#E9A13B"
+    },
+    {
+      "name": "Signal",
+      "cn": "信号红",
+      "hex": "#E8440F"
+    }
+  ],
+  "talks": [
+    {
+      "title": "SchoolLink：在没有互联网的教室里做设计",
+      "event": "项目复盘 · 校内分享",
+      "date": "2026",
+      "video": "",
+      "poster": "",
+      "note": "从一枚图标讲到一条离线链路，复盘校联从草图到上线的全过程。录像整理中，稍后上传。"
+    }
+  ],
+  "contact": {
+    "email": "2159979028@qq.com",
+    "github": "https://github.com/Lihongbo-Learn",
+    "note": "讨论设计、字体或开源项目。欢迎来信。",
+    "availability": "OPEN FOR COLLABORATION — 2026",
+    "footer": "Set in Archivo & Songti. Built by hand with HTML, CSS and JavaScript. No cookies, no analytics."
+  }
+}

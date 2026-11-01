@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#F2EFE6">
+  <title>后台 — 宛枯缘梦</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="../assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/space-mono-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <a class="skip-link" href="#panel">跳到编辑区</a>
+
+  <header class="adm-head">
+    <a class="adm-brand" href="../">
+      <span class="adm-brand-mark">梦<i></i></span>
+      <span class="adm-brand-text">宛枯缘梦<em>Studio / 后台</em></span>
+    </a>
+    <div class="adm-head-mid">
+      <span class="adm-status" id="status">未连接</span>
+    </div>
+    <div class="adm-head-actions">
+      <button class="adm-btn adm-btn--ghost" type="button" id="backupBtn">备份 JSON</button>
+      <button class="adm-btn adm-btn--ghost" type="button" id="reloadBtn">重新载入</button>
+      <a class="adm-btn adm-btn--ghost" href="../" target="_blank" rel="noopener">查看网站 ↗</a>
+      <button class="adm-btn adm-btn--primary" type="button" id="saveBtn" disabled>保存并发布</button>
+    </div>
+  </header>
+
+  <div class="adm-message" id="message" hidden></div>
+
+  <section class="gate" id="gate">
+    <div class="gate-card">
+      <span class="mono">ADMIN ACCESS</span>
+      <h1>连接仓库</h1>
+      <p class="gate-lead">
+        后台通过 GitHub API 直接写入这个仓库，无需服务器。请填写一个<b>仅限本仓库</b>的细粒度 Token。
+      </p>
+      <form id="gateForm" autocomplete="off">
+        <label class="mono" for="tokenInput">Fine-grained personal access token</label>
+        <input class="adm-input" id="tokenInput" type="password" placeholder="github_pat_..." spellcheck="false" required>
+        <label class="gate-remember">
+          <input type="checkbox" id="rememberToken" checked>
+          <span>在此设备记住 Token（存于 localStorage）</span>
+        </label>
+        <button class="adm-btn adm-btn--primary gate-submit" type="submit" id="gateSubmit">连接</button>
+        <p class="gate-error" id="gateError" hidden></p>
+      </form>
+      <div class="gate-help">
+        <p class="mono">HOW TO</p>
+        <ol>
+          <li>打开 <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">GitHub → Fine-grained tokens</a></li>
+          <li>Repository access 只选 <code>Lihongbo-Learn/lihongbo-learn.github.io</code></li>
+          <li>Permissions → Contents 设为 <b>Read and write</b></li>
+          <li>生成后粘贴到上方。Token 只保存在你的浏览器里，不会提交到仓库。</li>
+        </ol>
+        <p class="gate-secure">不要在此处使用账号密码，也不要把 Token 发给别人。Token 等同于这个仓库的写权限。</p>
+      </div>
+    </div>
+  </section>
+
+  <main class="adm-app" id="app" hidden>
+    <aside class="adm-side">
+      <nav class="adm-nav" id="nav" aria-label="后台栏目">
+        <button type="button" data-tab="site"><span>01</span>站点</button>
+        <button type="button" data-tab="hero"><span>02</span>首屏</button>
+        <button type="button" data-tab="projects"><span>03</span>项目与跨页</button>
+        <button type="button" data-tab="specimen"><span>04</span>字体样张</button>
+        <button type="button" data-tab="palette"><span>05</span>色板</button>
+        <button type="button" data-tab="talks"><span>06</span>讲座</button>
+        <button type="button" data-tab="contact"><span>07</span>联系</button>
+        <button type="button" data-tab="account"><span>08</span>账户与仓库</button>
+      </nav>
+      <div class="adm-side-foot">
+        <p class="mono">REPO</p>
+        <p>Lihongbo-Learn /<br>lihongbo-learn.github.io</p>
+        <p class="mono" id="sideBranch">BRANCH main</p>
+      </div>
+    </aside>
+
+    <section class="adm-panel" id="panel" aria-live="polite"></section>
+  </main>
+
+  <div class="adm-toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="admin.js" defer></script>
+</body>
+</html>

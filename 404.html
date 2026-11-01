@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>404 — 宛枯缘梦</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <style>
+    @font-face {
+      font-family: "Archivo Variable";
+      src: url("/assets/fonts/archivo-var.woff2") format("woff2-variations");
+      font-weight: 100 900;
+      font-stretch: 62% 125%;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Instrument Serif";
+      src: url("/assets/fonts/instrument-serif-italic.woff2") format("woff2");
+      font-weight: 400;
+      font-style: italic;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Space Mono";
+      src: url("/assets/fonts/space-mono-400.woff2") format("woff2");
+      font-display: swap;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100svh;
+      background: #060608;
+      color: #f3f1ea;
+      font-family: "Archivo Variable", "PingFang SC", "Microsoft YaHei", sans-serif;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 30px;
+      overflow: hidden;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: -20%;
+      background:
+        radial-gradient(40% 50% at 70% 20%, rgba(90,108,255,.2), transparent 65%),
+        radial-gradient(35% 45% at 20% 30%, rgba(146,92,255,.12), transparent 70%);
+      filter: blur(30px);
+      pointer-events: none;
+    }
+    main { position: relative; z-index: 1; max-width: 760px; }
+    .mono {
+      font-family: "Space Mono", monospace;
+      font-size: 10px;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: rgba(243,241,234,.5);
+    }
+    h1 {
+      margin: 18px 0 10px;
+      font-size: clamp(4rem, 15vw, 11rem);
+      font-weight: 800;
+      line-height: .9;
+      letter-spacing: .02em;
+      background: linear-gradient(105deg, #fff 0%, #dfe4ff 40%, #8b9cff 65%, #fff 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    em {
+      font-family: "Instrument Serif", "Songti SC", serif;
+      font-style: italic;
+      color: rgba(243,241,234,.6);
+      font-size: 1.1rem;
+    }
+    p { color: rgba(243,241,234,.55); font-size: 13px; line-height: 1.9; margin: 18px 0 28px; }
+    a {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 22px;
+      border-radius: 999px;
+      background: #8b9cff;
+      color: #08080f;
+      font-size: 13px;
+      text-decoration: none;
+      transition: transform .3s, box-shadow .3s;
+    }
+    a:hover { transform: translateY(-2px); box-shadow: 0 10px 36px rgba(139,156,255,.35); }
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: #e9a13b; }
+  </style>
+</head>
+<body>
+  <main>
+    <span class="mono">404 — PAGE NOT FOUND</span>
+    <h1>走丢了。</h1>
+    <em>This page drifted into the stars.</em>
+    <p>你要找的页面不在这里。回到首页，或者去看一眼字体样张。</p>
+    <a href="/"><span class="dot"></span> 回到首页</a>
+  </main>
+</body>
+</html>

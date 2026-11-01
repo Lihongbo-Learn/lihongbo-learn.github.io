@@ -1,0 +1,847 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>宛枯缘梦 — Type Specimen No. 01</title>
+  <meta name="description" content="宛枯缘梦的字体样张：Archivo Variable × 系统宋体。">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <style>
+    @font-face {
+      font-family: "Archivo Variable";
+      src: url("assets/fonts/archivo-var.woff2") format("woff2-variations");
+      font-weight: 100 900;
+      font-stretch: 62% 125%;
+      font-display: block;
+    }
+    @font-face {
+      font-family: "Instrument Serif";
+      src: url("assets/fonts/instrument-serif.woff2") format("woff2");
+      font-weight: 400;
+      font-display: block;
+    }
+    @font-face {
+      font-family: "Instrument Serif";
+      src: url("assets/fonts/instrument-serif-italic.woff2") format("woff2");
+      font-weight: 400;
+      font-style: italic;
+      font-display: block;
+    }
+    @font-face {
+      font-family: "Space Mono";
+      src: url("assets/fonts/space-mono-400.woff2") format("woff2");
+      font-weight: 400;
+      font-display: block;
+    }
+
+    :root {
+      --paper: #f2efe6;
+      --paper-2: #e9e4d6;
+      --ink: #14120f;
+      --ink-60: rgba(20, 18, 15, 0.6);
+      --ink-40: rgba(20, 18, 15, 0.4);
+      --ink-20: rgba(20, 18, 15, 0.2);
+      --signal: #e8440f;
+      --moss: #0e3b2e;
+      --amber: #e9a13b;
+      --display: "Archivo Variable", "Helvetica Neue", Arial, sans-serif;
+      --serif: "Instrument Serif", "Songti SC", "Noto Serif SC", "SimSun", serif;
+      --mono: "Space Mono", ui-monospace, Menlo, Consolas, monospace;
+      --sans: "Archivo Variable", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: #d8d3c4;
+      color: var(--ink);
+      font-family: var(--sans);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .toolbar {
+      position: fixed;
+      left: 20px;
+      bottom: 20px;
+      z-index: 10;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 14px;
+      background: var(--ink);
+      color: var(--paper);
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .toolbar a {
+      color: var(--paper);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(242, 239, 230, 0.5);
+    }
+    .toolbar button {
+      font: inherit;
+      color: var(--ink);
+      background: var(--paper);
+      border: 0;
+      padding: 7px 10px;
+      cursor: pointer;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .pages {
+      padding: 28px 0 90px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+    .page {
+      position: relative;
+      width: 210mm;
+      height: 297mm;
+      padding: 16mm;
+      background: var(--paper);
+      overflow: hidden;
+      box-shadow: 0 18px 50px rgba(20, 18, 15, 0.18);
+      page-break-after: always;
+      break-after: page;
+    }
+    .page:last-child { page-break-after: auto; break-after: auto; }
+    .rule { height: 1px; background: var(--ink); }
+    .hair { height: 1px; background: var(--ink-20); }
+    .mono {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      line-height: 1.6;
+    }
+    .crop {
+      position: absolute;
+      width: 5mm;
+      height: 5mm;
+      pointer-events: none;
+    }
+    .crop::before, .crop::after { content: ""; position: absolute; background: var(--ink); }
+    .crop::before { width: 100%; height: 0.4pt; }
+    .crop::after { width: 0.4pt; height: 100%; }
+    .crop.tl { top: 6mm; left: 6mm; }
+    .crop.tl::before { top: 0; left: 0; }
+    .crop.tl::after { top: 0; left: 0; }
+    .crop.tr { top: 6mm; right: 6mm; }
+    .crop.tr::before { top: 0; right: 0; }
+    .crop.tr::after { top: 0; right: 0; }
+    .crop.bl { bottom: 6mm; left: 6mm; }
+    .crop.bl::before { bottom: 0; left: 0; }
+    .crop.bl::after { bottom: 0; left: 0; }
+    .crop.br { bottom: 6mm; right: 6mm; }
+    .crop.br::before { bottom: 0; right: 0; }
+    .crop.br::after { bottom: 0; right: 0; }
+
+    .page-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10mm;
+      padding-bottom: 3mm;
+      border-bottom: 0.8pt solid var(--ink);
+      color: var(--ink-60);
+    }
+    .page-head .num { color: var(--ink); }
+
+    /* Cover */
+    .cover {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .cover .meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 8mm;
+      color: var(--ink-60);
+      border-bottom: 0.8pt solid var(--ink);
+      padding-bottom: 3mm;
+    }
+    .cover .meta span:first-child { color: var(--ink); }
+    .cover-mid {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-top: 12mm;
+    }
+    .cover-aa {
+      font-family: var(--display);
+      font-size: 262pt;
+      font-weight: 800;
+      font-variation-settings: "wdth" 118, "wght" 830;
+      line-height: 0.76;
+      letter-spacing: -0.075em;
+      margin-left: -0.055em;
+    }
+    .cover-aa .dot {
+      display: inline-block;
+      width: 0.1em;
+      height: 0.1em;
+      border-radius: 50%;
+      background: var(--signal);
+      vertical-align: 0.06em;
+      margin-left: 0.05em;
+    }
+    .cover-side {
+      writing-mode: vertical-rl;
+      font-family: var(--serif);
+      font-size: 12pt;
+      letter-spacing: 0.42em;
+      color: var(--ink-60);
+      margin-top: 6mm;
+    }
+    .cover-axis {
+      margin-top: 10mm;
+      display: flex;
+      gap: 12mm;
+      border-top: 0.6pt solid var(--ink-20);
+      border-bottom: 0.6pt solid var(--ink-20);
+      padding: 3mm 0;
+      color: var(--ink-60);
+    }
+    .cover-axis b { color: var(--ink); font-weight: 400; }
+    .cover-index {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 14mm;
+      border-top: 0.5pt solid var(--ink-20);
+      border-bottom: 0.5pt solid var(--ink-20);
+    }
+    .cover-index > div {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6mm;
+      padding: 4.5mm 0 4.5mm 5mm;
+      border-left: 0.5pt solid var(--ink-20);
+    }
+    .cover-index > div:first-child {
+      border-left: 0;
+      padding-left: 0;
+    }
+    .cover-index b {
+      font-family: var(--display);
+      font-size: 12.5pt;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+    .cover-index em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--ink-60);
+      font-size: 10pt;
+    }
+    .cover-index span {
+      color: var(--ink-40);
+    }
+    .cover-foot {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr auto;
+      gap: 10mm;
+      align-items: end;
+      border-top: 0.8pt solid var(--ink);
+      padding-top: 5mm;
+    }
+    .cover-title {
+      font-family: var(--display);
+      font-size: 40pt;
+      font-weight: 800;
+      font-variation-settings: "wdth" 100, "wght" 800;
+      line-height: 0.92;
+      letter-spacing: -0.045em;
+    }
+    .cover-title em {
+      display: block;
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 0.44em;
+      letter-spacing: 0;
+      color: var(--ink-60);
+      margin-top: 2mm;
+    }
+    .cover-sub {
+      font-size: 8.5pt;
+      line-height: 1.9;
+      color: var(--ink-60);
+      padding-bottom: 1mm;
+    }
+    .mark {
+      position: relative;
+      width: 22mm;
+      height: 22mm;
+      border-radius: 50%;
+      border: 0.6pt dashed var(--ink-40);
+      display: grid;
+      place-items: center;
+      font-family: var(--serif);
+      font-size: 26pt;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+    .mark::after {
+      content: "";
+      position: absolute;
+      top: 1.5mm;
+      right: 1.5mm;
+      width: 2mm;
+      height: 2mm;
+      border-radius: 50%;
+      background: var(--signal);
+    }
+
+    /* Axes page */
+    .axes-title {
+      font-family: var(--display);
+      font-size: 54pt;
+      font-weight: 800;
+      font-variation-settings: "wdth" 105, "wght" 800;
+      line-height: 0.9;
+      letter-spacing: -0.05em;
+      margin: 10mm 0 5mm;
+    }
+    .axes-title em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 0.38em;
+      letter-spacing: 0;
+      color: var(--ink-60);
+      display: block;
+      margin-top: 2mm;
+    }
+    .axes-lead {
+      font-size: 8.5pt;
+      line-height: 1.95;
+      color: var(--ink-60);
+      max-width: 120mm;
+      margin-bottom: 9mm;
+    }
+    .axis-row {
+      display: grid;
+      grid-template-columns: 30mm minmax(0, 1fr) 26mm;
+      gap: 6mm;
+      align-items: baseline;
+      padding: 3.2mm 0;
+      border-top: 0.5pt solid var(--ink-20);
+    }
+    .axis-row .label { color: var(--ink-60); }
+    .axis-row .sample {
+      font-family: var(--display);
+      font-size: 33pt;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.035em;
+      white-space: nowrap;
+    }
+    .axis-row .note {
+      text-align: right;
+      color: var(--ink-40);
+    }
+    .weight-block {
+      margin-top: 9mm;
+      border-top: 0.8pt solid var(--ink);
+      padding-top: 4mm;
+    }
+    .weight-row {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0;
+      margin-top: 3mm;
+    }
+    .weight-cell {
+      border-left: 0.5pt solid var(--ink-20);
+      padding: 2mm 2mm 0;
+    }
+    .weight-cell:first-child { border-left: 0; }
+    .weight-cell .glyph {
+      font-family: var(--display);
+      font-size: 38pt;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+    .weight-cell .tag {
+      margin-top: 2mm;
+      color: var(--ink-40);
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.1em;
+    }
+    .axes-foot {
+      position: absolute;
+      left: 16mm;
+      right: 16mm;
+      bottom: 12mm;
+      display: flex;
+      justify-content: space-between;
+      gap: 10mm;
+      color: var(--ink-40);
+      border-top: 0.5pt solid var(--ink-20);
+      padding-top: 3mm;
+    }
+
+    /* Text page */
+    .text-title {
+      font-family: var(--display);
+      font-size: 48pt;
+      font-weight: 800;
+      font-variation-settings: "wdth" 104, "wght" 800;
+      line-height: 1.02;
+      letter-spacing: -0.045em;
+      margin: 9mm 0 4mm;
+    }
+    .text-title em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 0.42em;
+      letter-spacing: 0;
+      color: var(--ink-60);
+      margin-left: 0.18em;
+    }
+    .text-sub {
+      display: flex;
+      justify-content: space-between;
+      gap: 10mm;
+      color: var(--ink-40);
+      border-bottom: 0.8pt solid var(--ink);
+      padding-bottom: 2.5mm;
+      margin-bottom: 7mm;
+    }
+    .text-cols {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 7mm;
+    }
+    .text-cols > div {
+      border-left: 0.5pt solid var(--ink-20);
+      padding-left: 5mm;
+      font-size: 8.6pt;
+      line-height: 2;
+      text-align: justify;
+      color: rgba(20, 18, 15, 0.86);
+    }
+    .text-cols > div:first-child {
+      border-left: 0;
+      padding-left: 0;
+    }
+    .text-cols p + p { margin-top: 3mm; }
+    .text-cols .en {
+      font-family: var(--display);
+      font-size: 8pt;
+      line-height: 1.85;
+      color: var(--ink-60);
+    }
+    .dropcap::first-letter {
+      float: left;
+      font-family: var(--display);
+      font-size: 31pt;
+      font-weight: 800;
+      line-height: 0.82;
+      padding: 1mm 2mm 0 0;
+    }
+    .pull {
+      margin-top: 10mm;
+      padding: 6mm 0;
+      border-top: 0.8pt solid var(--ink);
+      border-bottom: 0.8pt solid var(--ink);
+      display: grid;
+      grid-template-columns: 30mm 1fr;
+      gap: 6mm;
+      align-items: baseline;
+    }
+    .pull blockquote {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: 20pt;
+      line-height: 1.4;
+      letter-spacing: 0.005em;
+    }
+    .scale-strip {
+      margin-top: 10mm;
+      border-top: 0.5pt solid var(--ink-20);
+      padding-top: 4mm;
+    }
+    .scale-strip .labels {
+      display: flex;
+      justify-content: space-between;
+      gap: 6mm;
+      color: var(--ink-40);
+    }
+    .scale-words {
+      display: flex;
+      align-items: baseline;
+      gap: 7mm;
+      margin-top: 3mm;
+      font-family: var(--display);
+      font-weight: 800;
+      font-variation-settings: "wdth" 100, "wght" 800;
+      letter-spacing: -0.04em;
+      line-height: 0.8;
+    }
+    .scale-words span {
+      display: inline-block;
+      border-left: 0.5pt solid var(--ink-20);
+      padding-left: 5mm;
+    }
+    .scale-words span:first-child {
+      border-left: 0;
+      padding-left: 0;
+    }
+    .text-specimen {
+      position: absolute;
+      left: 16mm;
+      right: 16mm;
+      bottom: 14mm;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8mm;
+      font-family: var(--display);
+      font-size: 30pt;
+      font-weight: 800;
+      font-variation-settings: "wdth" 112, "wght" 800;
+      letter-spacing: -0.045em;
+      border-top: 0.5pt solid var(--ink-20);
+      padding-top: 4mm;
+    }
+    .text-specimen span {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      font-weight: 400;
+      letter-spacing: 0.16em;
+      color: var(--ink-40);
+    }
+
+    /* Colophon page */
+    .colophon-page {
+      background: var(--ink);
+      color: var(--paper);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .colophon-page .mono { color: rgba(242, 239, 230, 0.55); }
+    .colophon-page .page-head {
+      border-bottom-color: rgba(242, 239, 230, 0.45);
+      color: rgba(242, 239, 230, 0.6);
+    }
+    .colophon-page .page-head .num { color: var(--paper); }
+    .colophon-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12mm;
+      align-items: flex-start;
+      margin-top: 14mm;
+    }
+    .colophon-word {
+      font-family: var(--display);
+      font-size: 74pt;
+      font-weight: 800;
+      font-variation-settings: "wdth" 108, "wght" 800;
+      line-height: 0.9;
+      letter-spacing: -0.055em;
+    }
+    .colophon-word .dot {
+      display: inline-block;
+      width: 0.12em;
+      height: 0.12em;
+      border-radius: 50%;
+      background: var(--signal);
+      margin-left: 0.05em;
+    }
+    .colophon-cn {
+      writing-mode: vertical-rl;
+      font-family: var(--serif);
+      font-size: 11pt;
+      letter-spacing: 0.4em;
+      color: rgba(242, 239, 230, 0.55);
+    }
+    .swatches {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      margin-top: 12mm;
+      border: 0.5pt solid rgba(242, 239, 230, 0.25);
+    }
+    .swatch {
+      padding: 4mm;
+      min-height: 34mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-left: 0.5pt solid rgba(242, 239, 230, 0.25);
+      font-family: var(--mono);
+      font-size: 5.8pt;
+      letter-spacing: 0.08em;
+    }
+    .swatch:first-child { border-left: 0; }
+    .swatch .chip {
+      width: 100%;
+      height: 15mm;
+      border: 0.4pt solid rgba(242, 239, 230, 0.25);
+      margin-bottom: 3mm;
+    }
+    .colophon-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8mm;
+      border-top: 0.5pt solid rgba(242, 239, 230, 0.25);
+      padding-top: 5mm;
+    }
+    .colophon-grid h4 {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      font-weight: 400;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(242, 239, 230, 0.45);
+      margin: 0 0 2.5mm;
+    }
+    .colophon-grid p {
+      margin: 0;
+      font-size: 8.4pt;
+      line-height: 1.9;
+      color: rgba(242, 239, 230, 0.75);
+    }
+    .colophon-grid a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 0.4pt solid rgba(242, 239, 230, 0.35);
+    }
+    .colophon-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 8mm;
+      margin-top: 10mm;
+      padding-top: 3mm;
+      border-top: 0.5pt solid rgba(242, 239, 230, 0.2);
+      color: rgba(242, 239, 230, 0.4);
+    }
+
+    @page {
+      size: A4;
+      margin: 0;
+    }
+    @media print {
+      body { background: #fff; }
+      .toolbar { display: none; }
+      .pages { padding: 0; gap: 0; display: block; }
+      .page {
+        box-shadow: none;
+        margin: 0;
+        width: 210mm;
+        height: 297mm;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <span>Type Specimen No. 01 — A4 / 4 pages</span>
+    <button type="button" onclick="window.print()">打印 / 另存 PDF</button>
+    <a href="./">返回首页</a>
+  </div>
+
+  <div class="pages">
+    <!-- Page 1 -->
+    <section class="page cover">
+      <span class="crop tl"></span><span class="crop tr"></span><span class="crop bl"></span><span class="crop br"></span>
+      <div class="meta mono">
+        <span>WANKUYUANMENG — TYPE SPECIMEN</span>
+        <span>Issue 01 / 2026</span>
+        <span>4 Pages / A4</span>
+      </div>
+      <div>
+        <div class="cover-mid">
+          <div class="cover-aa">Aa<span class="dot"></span></div>
+          <div class="cover-side">字样 · 字体样张</div>
+        </div>
+        <div class="cover-axis mono">
+          <span>Typeface <b>Archivo Variable</b></span>
+          <span>Axes <b>wdth 62–125 / wght 100–900</b></span>
+          <span>Company <b>系统宋体</b></span>
+        </div>
+        <div class="cover-index">
+          <div><span class="mono">01 / Axes</span><b>Variable Axes</b><em>两个字轴</em></div>
+          <div><span class="mono">02 / Text</span><b>Text Setting</b><em>中英混排</em></div>
+          <div><span class="mono">03 / Colophon</span><b>Colophon</b><em>色板与版权</em></div>
+        </div>
+      </div>
+      <div class="cover-foot">
+        <div class="cover-title">Type Specimen<em>字体样张 — No. 01</em></div>
+        <div class="cover-sub">
+          以十二栏网格排布，同时展示一组可变字体的宽度与重量。
+          中文部分使用系统宋体，与无衬线拉丁文并置。
+        </div>
+        <div class="mark">梦</div>
+      </div>
+    </section>
+
+    <!-- Page 2 -->
+    <section class="page">
+      <span class="crop tl"></span><span class="crop tr"></span><span class="crop bl"></span><span class="crop br"></span>
+      <div class="page-head mono">
+        <span><span class="num">02</span> / Axes</span>
+        <span>Archivo Variable</span>
+        <span>WANKUYUANMENG — 2026</span>
+      </div>
+      <h2 class="axes-title">Variable Axes<em>两个字轴</em></h2>
+      <p class="axes-lead">
+        同一套字形，可以被拉伸、压扁与加重。字宽轴决定文本的密度，
+        字重轴决定声音的大小；两者并非装饰，而是排版时的语气。
+      </p>
+      <div class="axis-row">
+        <span class="label mono">Width 62</span>
+        <span class="sample" style="font-variation-settings:'wdth' 62,'wght' 700">Wankuyuanmeng</span>
+        <span class="note mono">Condensed</span>
+      </div>
+      <div class="axis-row">
+        <span class="label mono">Width 75</span>
+        <span class="sample" style="font-variation-settings:'wdth' 75,'wght' 700">Wankuyuanmeng</span>
+        <span class="note mono">Narrow</span>
+      </div>
+      <div class="axis-row">
+        <span class="label mono">Width 90</span>
+        <span class="sample" style="font-variation-settings:'wdth' 90,'wght' 700">Wankuyuanmeng</span>
+        <span class="note mono">Text</span>
+      </div>
+      <div class="axis-row">
+        <span class="label mono">Width 100</span>
+        <span class="sample" style="font-variation-settings:'wdth' 100,'wght' 700">Wankuyuanmeng</span>
+        <span class="note mono">Normal</span>
+      </div>
+      <div class="axis-row">
+        <span class="label mono">Width 112</span>
+        <span class="sample" style="font-variation-settings:'wdth' 112,'wght' 700">Wankuyuanmeng</span>
+        <span class="note mono">Display</span>
+      </div>
+      <div class="axis-row">
+        <span class="label mono">Width 125</span>
+        <span class="sample" style="font-variation-settings:'wdth' 125,'wght' 700">Wankuyuanmeng</span>
+        <span class="note mono">Expanded</span>
+      </div>
+
+      <div class="weight-block">
+        <div class="mono" style="color:var(--ink-60)">Weight 100 — 900 / 同一字宽</div>
+        <div class="weight-row">
+          <div class="weight-cell"><div class="glyph" style="font-variation-settings:'wdth' 100,'wght' 100">Aa</div><div class="tag">100</div></div>
+          <div class="weight-cell"><div class="glyph" style="font-variation-settings:'wdth' 100,'wght' 250">Aa</div><div class="tag">250</div></div>
+          <div class="weight-cell"><div class="glyph" style="font-variation-settings:'wdth' 100,'wght' 400">Aa</div><div class="tag">400</div></div>
+          <div class="weight-cell"><div class="glyph" style="font-variation-settings:'wdth' 100,'wght' 550">Aa</div><div class="tag">550</div></div>
+          <div class="weight-cell"><div class="glyph" style="font-variation-settings:'wdth' 100,'wght' 700">Aa</div><div class="tag">700</div></div>
+          <div class="weight-cell"><div class="glyph" style="font-variation-settings:'wdth' 100,'wght' 800">Aa</div><div class="tag">800</div></div>
+          <div class="weight-cell"><div class="glyph" style="font-variation-settings:'wdth' 100,'wght' 900">Aa</div><div class="tag">900</div></div>
+        </div>
+      </div>
+
+      <div class="axes-foot mono">
+        <span>01 — Type Specimen</span>
+        <span>Archivo Variable / David Jonathan Ross</span>
+        <span>Page 02</span>
+      </div>
+    </section>
+
+    <!-- Page 3 -->
+    <section class="page">
+      <span class="crop tl"></span><span class="crop tr"></span><span class="crop bl"></span><span class="crop br"></span>
+      <div class="page-head mono">
+        <span><span class="num">03</span> / Text</span>
+        <span>Grid / 12 Columns</span>
+        <span>Page 03</span>
+      </div>
+      <h2 class="text-title">在字体、网格<br>与代码之间<em>Design, type &amp; code</em></h2>
+      <div class="text-sub mono">
+        <span>Bilingual setting / 中英混排</span>
+        <span>Archivo + 系统宋体</span>
+        <span>9 pt / 2.0</span>
+      </div>
+      <div class="text-cols">
+        <div>
+          <p class="dropcap">排版是一种看不见的秩序。字距、行距、栏宽与页边距共同决定了一段文字被阅读时的呼吸。当这些数值落在网格上，页面便有了稳定的节奏；而当其中一项被有意打破，读者才会注意到设计的存在。</p>
+          <p>这套样张以十二栏为骨架。标题、正文、图注与页码分别占据不同的栏位，像印刷厂里的铅字被依次放回字盘。</p>
+        </div>
+        <div>
+          <p>可变字体让“语气”变成连续的：一处强调可以让字宽缓慢扩张，一段引文可以让字重变轻。动效不应只是入场动画，它也可以是一次排版参数的变化。</p>
+          <p>中文使用系统宋体，与无衬线的拉丁文形成对照——横细竖粗的笔画在纸上留下更多空白，也让双语页面产生呼吸的层次。</p>
+        </div>
+        <div class="en">
+          <p>Typography is an invisible order. Tracking, leading, column width and margins decide how a text breathes. Set on a grid, the page finds a rhythm. Break one of those values on purpose, and the reader begins to notice the design.</p>
+          <p>This specimen uses a twelve-column skeleton. Headlines, body copy, captions and folios each take their own field, like lead type returned to the case after printing.</p>
+        </div>
+      </div>
+      <div class="pull">
+        <span class="mono">Pull quote / 01</span>
+        <blockquote>“好的系统应当像一本装订得当的书：结构清楚，细节克制，拿在手里有分量。”</blockquote>
+      </div>
+      <div class="scale-strip">
+        <div class="labels mono"><span>Type scale / 字号级数</span><span>46 — 34 — 25 — 18 — 13 — 9 — 6.5 pt</span></div>
+        <div class="scale-words">
+          <span style="font-size: 46pt">Aa</span>
+          <span style="font-size: 34pt">Aa</span>
+          <span style="font-size: 25pt">Aa</span>
+          <span style="font-size: 18pt">Aa</span>
+          <span style="font-size: 13pt">Aa</span>
+          <span style="font-size: 9pt">Aa</span>
+          <span style="font-size: 6.5pt">Aa</span>
+        </div>
+      </div>
+      <div class="text-specimen">
+        WANKUYUANMENG<span>SCHOOLLINK — 校联 — 2026</span>
+      </div>
+    </section>
+
+    <!-- Page 4 -->
+    <section class="page colophon-page">
+      <span class="crop tl"></span><span class="crop tr"></span><span class="crop bl"></span><span class="crop br"></span>
+      <div class="page-head mono">
+        <span><span class="num">04</span> / Colophon</span>
+        <span>Specimen No. 01</span>
+        <span>2026</span>
+      </div>
+      <div>
+        <div class="colophon-top">
+          <div class="colophon-word">宛枯缘梦<span class="dot"></span></div>
+          <div class="colophon-cn">个人作品集 · 字体样张</div>
+        </div>
+        <div class="swatches">
+          <div class="swatch"><div><div class="chip" style="background:#F4F2EC"></div>Mist<br>#F4F2EC</div><div>01</div></div>
+          <div class="swatch"><div><div class="chip" style="background:#060608"></div>Void<br>#060608</div><div>02</div></div>
+          <div class="swatch"><div><div class="chip" style="background:#8B9CFF"></div>Periwinkle<br>#8B9CFF</div><div>03</div></div>
+          <div class="swatch"><div><div class="chip" style="background:#0E3B2E"></div>Moss<br>#0E3B2E</div><div>04</div></div>
+          <div class="swatch"><div><div class="chip" style="background:#E9A13B"></div>Amber<br>#E9A13B</div><div>05</div></div>
+          <div class="swatch"><div><div class="chip" style="background:#E8440F"></div>Signal<br>#E8440F</div><div>06</div></div>
+        </div>
+        <div class="colophon-grid">
+          <div>
+            <h4>Typefaces</h4>
+            <p>Archivo Variable<br>Instrument Serif<br>Space Mono<br>系统宋体 / 系统黑体</p>
+          </div>
+          <div>
+            <h4>Production</h4>
+            <p>HTML / CSS 排版<br>Chromium 打印为 PDF<br>纸张：A4 / 4 页<br>字体已嵌入</p>
+          </div>
+          <div>
+            <h4>Correspondence</h4>
+            <p><a href="mailto:2159979028@qq.com">2159979028@qq.com</a><br><a href="https://github.com/Lihongbo-Learn">github.com/Lihongbo-Learn</a><br><a href="https://lihongbo-learn.github.io/">lihongbo-learn.github.io</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="colophon-bottom mono">
+        <span>© 2026 宛枯缘梦</span>
+        <span>Type Specimen No. 01 — End</span>
+        <span>Set in Archivo &amp; Songti</span>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
